@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\PegawaiController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,11 +55,16 @@ Route::group(['prefix' => 'pengguna', 'middleware' => ['auth','role:pengguna']],
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
-    Route::get('Data Pegawai', function(){
-        return view('Data Pegawai.index');
+    Route::get('Pegawai', function(){
+        return view('Pegawai.index');
     })->middleware(['role:admin|pengguna']);
     
     Route::get('Data Jabatan', function(){
         return view('Data Jabatan.index');
     })->middleware(['role:admin|pengguna']);
+
+    Route::resource('Data Jabatan', JabatanController::class);
+    Route::resource('Pegawai', PegawaiController::class);
+
+
 }); 

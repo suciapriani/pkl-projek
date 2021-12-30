@@ -243,7 +243,11 @@ return [
         ],
 
         ['header' => 'ACCOUNT SETTINGS'],
-
+        [
+            'text' => 'Dasboard',
+            'icon'    => '',
+            'url'  => 'admin/',
+        ],
         [
             'text'    => 'mentor data',
             'icon'    => 'fas fa-align-justify',
@@ -251,7 +255,7 @@ return [
                 [
                     'text' => 'Data Pegawai',
                     'icon'    => 'far fa-id-card',
-                    'url'  => 'admin/Data Pegawai',
+                    'url'  => 'admin/Pegawai',
                 ],
                 [
                     'text'    => 'Data Jabatan',
