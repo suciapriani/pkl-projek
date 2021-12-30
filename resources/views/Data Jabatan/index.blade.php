@@ -23,7 +23,7 @@ Dashboard
                                 <tr>
                                     <th>Nomor</th>
                                     <th>Jabatan</th>
-                                    <th>Golongan</th>
+                                    <th>Golongan</th> 
                                     <th>Gaji Pokok</th>
                                     <th>Tunjangan Jabatan</th>
                                     <th>Action</th>
@@ -38,7 +38,7 @@ Dashboard
                                         <td>{{ $data->tunjangan_jabatan }}</td>
                     
                                         <td>
-                                            <form action="{{ route('Data Jabatan.destroy', $data->id) }}" method="post">
+                                        <form action="{{ route('Data Jabatan.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
                                                 <a href="{{ route('Data Jabatan.edit', $data->id) }}"
@@ -51,7 +51,7 @@ Dashboard
                                         </td>
                                     </tr>
                                 @endforeach
-</tbody>
+                        </tbody>
                    </table>
                 </div>
                <!-- /.table-responsive -->

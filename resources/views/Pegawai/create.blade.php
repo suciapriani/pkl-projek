@@ -6,6 +6,7 @@
 
 Dashboard
 
+
 @endsection
 
 @section('content')
@@ -17,6 +18,20 @@ Dashboard
                     <div class="card-body">
                         <form action="{{ route('Pegawai.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <div class="panel-body">
+                                        <label>id_jabatan</label>
+                                        <input type="text" class="form-control" name="id_jabatan">
+                                     </div>
+
+                                         {{-- <div class="panel-body">
+                                            <label>id_jabatan</label>
+                                            <select name="id_jabatan" class="form-control">
+                                                @foreach($jabatan as $data)
+                                                <option value="{{$data->id}}">{{$data->id_jabatan}}</option>
+                                                @endforeach
+                                            </select>
+
+                                         </div> --}}
                             <div class="form-group">
                                 <label for="">nik</label>
                                 <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror">
@@ -82,8 +97,8 @@ Dashboard
                                 <label for="">Jabatan</label>
                                 <select name="jabatan" class="form-control @error('jabatan') is-invalid @enderror">
                                     <option value=""></option>
-                                        <option value="perempuan">Perempuan</option>
-                                        <option value="laki-laki">laki-laki</option>
+                                        <option value="karyawan">karyawan</option>
+                                        <option value="menejer">menejer</option>
                                 </select>
                                 @error('jabatan')
                                     <span class="invalid-feedback" role="alert">
@@ -95,8 +110,10 @@ Dashboard
                                 <label for=""> Golongan </label>
                                 <select name="golongan" class="form-control @error('golongan') is-invalid @enderror">
                                     <option value=""></option>
-                                        <option value="perempuan">Perempuan</option>
-                                        <option value="laki-laki">laki-laki</option>
+                                        <option value="staf">staf</option>
+                                        <option value="admin">admin</option>
+                                        <option value="pegawai">pegawai</option>
+
                                 </select>
                                 @error('golongan')
                                     <span class="invalid-feedback" role="alert">

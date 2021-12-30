@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Pegawai extends Model
 {
     use HasFactory;
-    protected $visible = ['nik', 'nama', 'alamat','tgl_lahir','jenis_kelamin','no_telp','jabatan','golongan'];
-    protected $fillable = ['nik', 'nama', 'alamat','tgl_lahir','jenis_kelamin','no_telp','jabatan','golongan'];
+    protected $visible = ['id_jabatan','nik', 'nama', 'alamat','tgl_lahir','jenis_kelamin','no_telp','jabatan','golongan'];
+    protected $fillable = ['id_jabatan','nik', 'nama', 'alamat','tgl_lahir','jenis_kelamin','no_telp','jabatan','golongan'];
     public $timestamps = true;
 
     

@@ -71,9 +71,10 @@ class JabatanController extends Controller
      * @param  \App\Models\Jabatan  $jabatan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Jabatan $jabatan)
+    public function edit( $id)
     {
-        //
+        $jabatan = Jabatan::findOrFail($id);
+        return view('Data Jabatan.edit', compact('jabatan'));
     }
 
     /**

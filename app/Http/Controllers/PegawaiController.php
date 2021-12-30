@@ -28,8 +28,8 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $jabatan = Jabatan::all();
-        return view('Pegawai.create', compact('jabatan'));    
+        $pengawai = Pegawai::all();
+        return view('Pegawai.create', compact('pengawai'));    
     }
 
     /**
@@ -40,10 +40,11 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'pegawai' => 'required'
-        ]);
+        // $validated = $request->validate([
+        //     'pegawai' => 'required'
+        // ]);
         $pegawai = new Pegawai;
+        $pegawai->id_jabatan = $request->id_jabatan;
         $pegawai->nik = $request->nik;
         $pegawai->nama = $request->nama;
         $pegawai->alamat = $request->alamat;
@@ -90,6 +91,7 @@ class PegawaiController extends Controller
     {
      
         $pegawai = Pegawai::findOrFail($id);
+        $pegawai->id_jabatan = $request->id_jabatan;
         $pegawai->nik = $request->nik;
         $pegawai->nama = $request->nama;
         $pegawai->alamat = $request->alamat;

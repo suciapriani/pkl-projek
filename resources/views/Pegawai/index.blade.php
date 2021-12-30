@@ -6,7 +6,7 @@
 
 Dashboard
 
-@stop
+@endsection
 
 @section('content')
 <div class="col-lg-12">
@@ -20,8 +20,10 @@ Dashboard
             <div class="table-responsive">
                 <table class="table" id="example">
                             <table class="table">
+                            <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>id_jabatan</th>
                                     <th>nik</th>
                                     <th>nama</th>
                                     <th>alamat</th>
@@ -31,12 +33,14 @@ Dashboard
                                     <th>jabatan</th>
                                     <th>golongan</th>
                                     <th>Action</th>
-
                                 </tr>
+                                </thead>
+                                 <tbody>
                                 @php $no=1; @endphp
                                 @foreach ($pegawai as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
+                                        <td>{{ $data->jabatans->jabatan }}</td>
                                         <td>{{ $data->nik }}</td>
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->alamat }}</td>
@@ -70,7 +74,7 @@ Dashboard
 </div>
 
 
-@stop
+@endsection
 @section('css')
 <link rel="stylesheet" href="{{asset('DataTables/datatables.min.css')}}">
 @endsection
