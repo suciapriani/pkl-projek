@@ -19,4 +19,16 @@ class Pegawai extends Model
         // melalui fk "author_id"
         return $this->belongsTo('App\Models\jabatan', 'id_jabatan');
     }
+    public function lemburs()
+    {
+        // data dari Model "Book" bisa di miliki oleh model "Author"
+        // melalui fk "author_id"
+        return $this->hasMany('App\Models\lembur', 'id_karyawan');
+    }
+    public function cutis()
+    {
+        // data dari Model "Book" bisa di miliki oleh model "Author"
+        // melalui fk "author_id"
+        return $this->hasMany('App\Models\cuti', 'id_kar');
+    }
 }

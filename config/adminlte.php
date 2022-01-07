@@ -246,7 +246,7 @@ return [
         [
             'text' => 'Dasboard',
             'icon'    => '',
-            'url'  => 'admin/',
+            'url'  => 'home',
         ],
         [
             'text'    => 'mentor data',
@@ -260,31 +260,40 @@ return [
                 [
                     'text'    => 'Data Jabatan',
                     'icon'    => 'far fa-id-card',
-                    'url'     => 'admin/Data Jabatan',
+                    'url'     => 'admin/DataJabatan',
                 ],
             ],
         ],
         ['header' => 'Transaksi'],
         [
-            'text'       => 'Absensi',
+            'text'       => 'Lembur',
             'icon'       => 'far fa-chart-bar',
-            'url'        => '#',
+            'url'        => 'admin/Lembur',
         ],
         [
-            'text'       => 'Data Gaji',
+            'text'       => 'Cuti',
+            'icon'       => 'far fa-chart-bar',
+            'url'        => 'admin/Cuti',
+        ],
+        [
+            'text'       => 'Penggajian',
             'icon'       => 'far fa-clipboard',
-            'url'        => 'admin/',
+            'url'        => 'admin/Penggajian',
         ],
         [
             'text'    => 'Laporan',
             'icon'    => 'far fa-file-alt',
             'submenu' => [
                 [
-                    'text'    => 'Laporan Gaji',
+                    'text'    => 'Laporan Lembur',
                     'url'     => '#',
                 ],
                 [
-                    'text'    => 'Laporan Absen',
+                    'text'    => 'Laporan Cuti',
+                    'url'     => '#',
+                ],
+                [
+                    'text'    => 'Laporan Gaji',
                     'url'     => '#',
                 ],
             ],

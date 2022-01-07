@@ -28,8 +28,8 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $pengawai = Pegawai::all();
-        return view('Pegawai.create', compact('pengawai'));    
+        $jabatan = Jabatan::all();
+        return view('Pegawai.create', compact('jabatan'));    
     }
 
     /**
@@ -40,6 +40,7 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
+        
         // $validated = $request->validate([
         //     'pegawai' => 'required'
         // ]);
@@ -63,9 +64,10 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function show(Pegawai $pegawai)
+    public function show( $id)
     {
-        //
+        $pegawai = Pegawai::findOrFail($id);
+        return view('Pegawai.show', compact('pegawai'));
     }
 
     /**
@@ -74,9 +76,10 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pegawai $pegawai)
+    public function edit( $id)
     {
-        //
+        $pegawai = Pegawai::findOrFail($id);
+        return view('Pegawai.edit', compact('pegawai'));
     }
 
     /**
@@ -90,6 +93,17 @@ class PegawaiController extends Controller
     public function update(Request $request,$id)
     {
      
+        $request->validate([
+            'nik' => 'required',
+            'nama' => 'required',
+            'alamat' => 'required',
+            'tgl_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'no_telp' => 'required',
+            'jabatan' => 'required',
+            'golongan' => 'required',
+
+        ]);
         $pegawai = Pegawai::findOrFail($id);
         $pegawai->id_jabatan = $request->id_jabatan;
         $pegawai->nik = $request->nik;

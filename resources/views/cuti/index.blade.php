@@ -12,38 +12,39 @@ Dashboard
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
-            Data Asal
-            <a href="{{ route('Data Jabatan.create')}}" class="btn btn-primary float-right">Tambah</a>
+            Data Cuti
+            <a href="{{ route('Cuti.create')}}" class="btn btn-primary float-right">Tambah</a>
         </div>
         <!-- /.card-heading -->
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table" id="example">
-                            <table class="table">
+                            <thead>
                                 <tr>
-                                    <th>Nomor</th>
-                                    <th>Jabatan</th>
-                                    <th>Golongan</th> 
-                                    <th>Gaji Pokok</th>
-                                    <th>Tunjangan Jabatan</th>
+                                    <th>No</th>
+                                    <th>id_karyawan</th>
+                                    <th>nik</th>
+                                    <th>tgl_cuti</th>
+                                    <th>jumlah</th>
                                     <th>Action</th>
                                 </tr>
+                                </thead>
+                                 <tbody>
                                 @php $no=1; @endphp
-                                @foreach ($jabatan as $data)
+                                @foreach ($cuti as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $data->jabatan }}</td>
-                                        <td>{{ $data->golongan }}</td>
-                                        <td>{{ $data->gaji_pokok }}</td>
-                                        <td>{{ $data->tunjangan_jabatan }}</td>
-                    
+                                        <td>{{ $data->id_kar }}</td>
+                                        <td>{{ $data->nik }}</td>
+                                        <td>{{ $data->tgl_cuti }}</td>
+                                        <td>{{ $data->jumlah }}</td>
                                         <td>
-                                        <form action="{{ route('Data Jabatan.destroy', $data->id) }}" method="post">
+                                        <form action="{{ route('Cuti.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                <a href="{{ route('Data Jabatan.edit', $data->id) }}"
+                                                <a href="{{ route('Cuti.edit', $data->id) }}"
                                                     class="btn btn-outline-info">Edit</a>
-                                                <a href="{{ route('Data Jabatan.show', $data->id) }}"
+                                                <a href="{{ route('Cuti.show', $data->id) }}"
                                                     class="btn btn-outline-warning">Show</a>
                                                 <button type="submit" class="btn btn-outline-danger"
                                                     onclick="return confirm('Are you sure?');">Delete</button>
@@ -51,7 +52,8 @@ Dashboard
                                         </td>
                                     </tr>
                                 @endforeach
-                        </tbody>
+                        
+                            </tbody>
                    </table>
                 </div>
                <!-- /.table-responsive -->
@@ -59,8 +61,9 @@ Dashboard
         <!-- /.card-body -->
     </div>
 </div>
-@endsection
 
+
+@endsection
 @section('css')
 <link rel="stylesheet" href="{{asset('DataTables/datatables.min.css')}}">
 @endsection
@@ -73,3 +76,5 @@ Dashboard
         });
     </script>
 @endsection
+
+

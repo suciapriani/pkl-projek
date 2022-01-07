@@ -16,7 +16,7 @@ class JabatanController extends Controller
     {
         //
         $jabatan = Jabatan::all();
-        return view('Data Jabatan.index', compact('jabatan'));
+        return view('DataJabatan.index', compact('jabatan'));
     }
 
     /**
@@ -27,8 +27,8 @@ class JabatanController extends Controller
     public function create()
     {
         //
-
-        return view('Data Jabatan.create');
+        $jabatan = Jabatan::all();
+        return view('DataJabatan.create', compact('jabatan'));
     }
 
     /**
@@ -51,7 +51,7 @@ class JabatanController extends Controller
         $jabatan->gaji_pokok = $request->gaji_pokok;
         $jabatan->tunjangan_jabatan = $request->tunjangan_jabatan;
         $jabatan->save();
-        return redirect()->route('Data Jabatan.index');
+        return redirect()->route('DataJabatan.index');
     }
 
     /**
@@ -60,9 +60,10 @@ class JabatanController extends Controller
      * @param  \App\Models\Jabatan  $jabatan
      * @return \Illuminate\Http\Response
      */
-    public function show(Jabatan $jabatan)
+    public function show($id)
     {
-        //
+        $jabatan = Jabatan::findOrFail($id);
+        return view('DataJabatan.show', compact('jabatan'));
     }
 
     /**
@@ -71,10 +72,10 @@ class JabatanController extends Controller
      * @param  \App\Models\Jabatan  $jabatan
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $jabatan = Jabatan::findOrFail($id);
-        return view('Data Jabatan.edit', compact('jabatan'));
+        return view('DataJabatan.edit', compact('jabatan'));
     }
 
     /**
@@ -84,9 +85,23 @@ class JabatanController extends Controller
      * @param  \App\Models\Jabatan  $jabatan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jabatan $jabatan)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'jabatan' => 'required',
+            'golongan' => 'required',
+            'gaji_pokok' => 'required',
+            'tunjangan_jabatan' => 'required',
+
+        ]);
+
+        $jabatan = Jabatan::findOrFail($id);
+        $jabatan->jabatan = $request->jabatan;
+        $jabatan->golongan = $request->golongan;
+        $jabatan->gaji_pokok = $request->gaji_pokok;
+        $jabatan->tunjangan_jabatan = $request->tunjangan_jabatan;
+        $jabatan->save();
+        return redirect()->route('DataJabatan.index');
     }
 
     /**
@@ -95,10 +110,10 @@ class JabatanController extends Controller
      * @param  \App\Models\Jabatan  $jabatan
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         $jabatan = Jabatan::findOrFail($id);
         $jabatan->delete();
-        return redirect()->route('Data Jabatan.index');
+        return redirect()->route('DataJabatan.index');
     }
 }

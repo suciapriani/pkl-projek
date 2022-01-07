@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penggajian;
+use App\Models\Pegawai;
+
 use Illuminate\Http\Request;
 
 class PenggajianController extends Controller
@@ -15,7 +17,7 @@ class PenggajianController extends Controller
     public function index()
     {
         $penggajian = Penggajian::all();
-        return view('penggajian.create', compact('penggajian'));
+        return view('Penggajian.index', compact('penggajian'));
     }
 
     /**
@@ -25,8 +27,8 @@ class PenggajianController extends Controller
      */
     public function create()
     {
-        return view('pengajian.create', compact('pengajian'));
-    }
+        $pegawai = Pegawai::all();
+        return view('Penggajian.create', compact('pegawai',));     }
 
     /**
      * Store a newly created resource in storage.
@@ -37,19 +39,19 @@ class PenggajianController extends Controller
     public function store(Request $request)
     {
         //
-        $validated = $request->validate([
-            'penggajian' => 'required'
-        ]);
+        // $validated = $request->validate([
+        //     'penggajian' => 'required'
+        // ]);
 
         $penggajian = new Penggajian;
         //db              create
-        $penggajian->id_penggajian = $request->id_penggajian;
+        $penggajian->id_karyawan = $request->id_karyawan;
         $penggajian->id_jabatan = $request->id_jabatan;
         $penggajian->lemburan = $request->lemburan;
         $penggajian->potongan = $request->potongan;
         $penggajian->jumlah = $request->jumlah;
         $penggajian->save();
-        return redirect()->route('penggajian.index');
+        return redirect()->route('Penggajian.index');
     }
 
     /**
@@ -58,9 +60,10 @@ class PenggajianController extends Controller
      * @param  \App\Models\Penggajian  $penggajian
      * @return \Illuminate\Http\Response
      */
-    public function show(Penggajian $penggajian)
+    public function show($id)
     {
-        //
+        $penggajian = Penggajian::findOrFail($id);
+        return view('Penggajian.show', compact('penggajian'));
     }
 
     /**
@@ -69,9 +72,10 @@ class PenggajianController extends Controller
      * @param  \App\Models\Penggajian  $penggajian
      * @return \Illuminate\Http\Response
      */
-    public function edit(Penggajian $penggajian)
+    public function edit($id)
     {
-        //
+        $penggajian = Penggajian::findOrFail($id);
+        return view('Penggajian.edit', compact('penggajian'));
     }
 
     /**
@@ -81,10 +85,22 @@ class PenggajianController extends Controller
      * @param  \App\Models\Penggajian  $penggajian
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Penggajian $penggajian)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $request->validate([
+            'lemburan' => 'required',
+            'potongan' => 'required',
+            'jumlah' => 'required',
+
+        ]);
+        $penggajian->id_karyawan = $request->id_karyawan;
+        $penggajian->id_jabatan = $request->id_jabatan;
+        $penggajian->lemburan = $request->lemburan;
+        $penggajian->potongan = $request->potongan;
+        $penggajian->jumlah = $request->jumlah;
+        $penggajian->save();
+        return redirect()->route('Penggajian.index');
+    }  
 
     /**
      * Remove the specified resource from storage.
@@ -92,10 +108,10 @@ class PenggajianController extends Controller
      * @param  \App\Models\Penggajian  $penggajian
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Penggajian $penggajian)
+    public function destroy($id)
     {
         $penggajian = Penggajian::findOrFail($id);
         $penggajian->delete();
-        return redirect()->route('penggajian.index');
+        return redirect()->route('Penggajian.index');
     }
 }

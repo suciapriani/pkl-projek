@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lembur;
+use App\Models\Pegawai;
+
 use Illuminate\Http\Request;
 
 class LemburController extends Controller
@@ -15,7 +17,7 @@ class LemburController extends Controller
     public function index()
     {
         $lembur = Lembur::all();
-        return view('lembur.index', compact('lembur'));
+        return view('Lembur.index', compact('lembur'));
     }
 
     /**
@@ -25,7 +27,8 @@ class LemburController extends Controller
      */
     public function create()
     {
-        return view('lembur.create');
+        $pegawai = Pegawai::all();
+        return view('Lembur.create', compact('pegawai'));
     }
 
     /**
@@ -36,18 +39,18 @@ class LemburController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'pegawai' => 'required'
-        ]);
+        // $validated = $request->validate([
+        //     'lembur' => 'required'
+        // ]);
 
         $lembur = new Lembur;
         //db              create
-        $lembur->lembur = $request->lembur;
+        $lembur->id_karyawan = $request->id_karyawan;
         $lembur->nik = $request->nik;
         $lembur->tgl_lembur = $request->tgl_lembur;
         $lembur->jumlah = $request->jumlah;
         $lembur->save();
-        return redirect()->route('lembur.index');
+        return redirect()->route('Lembur.index');
     }
 
     /**
@@ -56,8 +59,10 @@ class LemburController extends Controller
      * @param  \App\Models\Lembur  $lembur
      * @return \Illuminate\Http\Response
      */
-    public function show(Lembur $lembur)
+    public function show($id)
     {
+        $lembur = Lembur::findOrFail($id);
+        return view('Lembur.show', compact('lembur'));
         //
     }
 
@@ -67,9 +72,10 @@ class LemburController extends Controller
      * @param  \App\Models\Lembur  $lembur
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lembur $lembur)
+    public function edit($id)
     {
-        //
+        $lembur = Lembur::findOrFail($id);
+        return view('Lembur.edit', compact('lembur'));  //
     }
 
     /**
@@ -79,9 +85,21 @@ class LemburController extends Controller
      * @param  \App\Models\Lembur  $lembur
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lembur $lembur)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nik' => 'required',
+            'tgl_lembur' => 'required',
+            'jumlah' => 'required',
+
+        ]);
+        $lembur = Lembur::findOrFail($id);
+        $lembur->id_karyawan = $request->id_karyawan;
+        $lembur->nik = $request->nik;
+        $lembur->tgl_lembur = $request->tgl_lembur;
+        $lembur->jumlah = $request->jumlah;
+        $lembur->save();
+        return redirect()->route('Lembur.index');
     }
 
     /**
@@ -90,10 +108,10 @@ class LemburController extends Controller
      * @param  \App\Models\Lembur  $lembur
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lembur $lembur)
+    public function destroy($id)
     {
         $lembur = Lembur::findOrFail($id);
         $lembur->delete();
-        return redirect()->route('lembur.index');
+        return redirect()->route('Lembur.index');
     }
 }

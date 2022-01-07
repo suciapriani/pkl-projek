@@ -9,54 +9,69 @@ Dashboard
 @endsection
 
 @section('content')
-<div class="container">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Data Pegawai</div>
+                    <div class="card-header">Edit Cuti</div>
                     <div class="card-body">
-                        <form action="{{ route('Data Jabatan.store') }}" method="post" enctype="multipart/form-data">
+                        @if($errors->any())
+                        <div class="alert alert-denger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                            <div>
+                                @endif
+                        <form action="{{ route('Cuti.update', $cuti->id) }}" method="post" accept="">
                             @csrf
+                            @method('put')
+                           <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Jabatan</label>
-                                <input type="text" name="jabatan" class="form-control @error('jabatan') is-invalid @enderror">
-                                @error('jabatan')
+                                <label for="">karyawan</label>
+                                <input type="text" name="id_kar" value="{{ $cuti->id_kar }}"
+                                    class="form-control @error('id_kar') is-invalid @enderror">
+                                @error('id_kar')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Nik</label>
+                                <input type="text" name="nik" value="{{ $cuti->nik }}"
+                                    class="form-control @error('nik') is-invalid @enderror">
+                                @error('nik')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Tanggal Lembur</label>
+                                <input type="date" name="tgl_cuti" value="{{ $cuti->tgl_cuti }}"
+                                    class="form-control @error('tgl_cuti') is-invalid @enderror">
+                                @error('tgl_cuti')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                           <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Jumlah</label>
+                                <input type="text" name="jumlah" value="{{ $cuti->jumlah }}"
+                                    class="form-control @error('jumlah') is-invalid @enderror">
+                                @error('jumlah')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                           
-                            <div class="form-group">
-                                <label for="">Golongan</label>
-                                <input type="text" name="golongan"
-                                    class="form-control @error('golongan') is-invalid @enderror">
-                                @error('golongan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for=""> Gaji pokok </label>
-                                <input type="text" name="gaji_pokok" class="form-control @error('gaji_pokok') is-invalid @enderror">
-                                @error('gaji_pokok')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for=""> tunjangan jabatan </label>
-                                <input type="text" name="tunjangan_jabatan" class="form-control @error('tunjangan_jabatan') is-invalid @enderror">
-                                @error('tunjangan_jabatan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            
                             <div class="form-group">
                                 <button type="reset" class="btn btn-outline-warning">Reset</button>
                                 <button type="submit" class="btn btn-outline-primary">Save</button>
@@ -67,8 +82,7 @@ Dashboard
             </div>
         </div>
     </div>
-
-@endsection
+    @endsection
 
 @section('css')
 

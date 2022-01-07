@@ -3,6 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\LemburController;
+use App\Http\Controllers\CutiController;
+use App\Http\Controllers\PenggajianController;
+
+
+
 
 
 
@@ -32,7 +38,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //hanya untuk role admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin']], function(){
-    Route::get('/', function(){
+    Route::get('home', function(){
         return 'halaman admin';
     });
 
@@ -59,12 +65,30 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
         return view('Pegawai.index');
     })->middleware(['role:admin|pengguna']);
     
-    Route::get('Data Jabatan', function(){
-        return view('Data Jabatan.index');
+    Route::get('DataJabatan', function(){
+        return view('DataJabatan.index');
     })->middleware(['role:admin|pengguna']);
 
-    Route::resource('Data Jabatan', JabatanController::class);
+    Route::get('Lembur', function(){
+        return view('Lembur.index');
+    })->middleware(['role:admin|pengguna']);
+
+    Route::get('Cuti', function(){
+        return view('Cuti.index');
+    })->middleware(['role:admin|pengguna']);
+
+    Route::get('Penggajian', function(){
+        return view('Penggajian.index');
+    })->middleware(['role:admin|pengguna']);
+
+    Route::resource('DataJabatan', JabatanController::class);
     Route::resource('Pegawai', PegawaiController::class);
+    Route::resource('Lembur', LemburController::class);
+    Route::resource('Cuti', CutiController::class);
+    Route::resource('Penggajian', PenggajianController::class);
+
+
+
 
 
 }); 

@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Lembur extends Model
 {
     use HasFactory;
+    protected $visible = ['id_karyawan','nik','tgl_lembur', 'jumlah'];
+    protected $fillable = ['id_karyawan','nik','tgl_lembur', 'jumlah'];
+    public $timestamps = true;
+
+    
+    public function pegawais()
+    {
+        // data dari Model "Book" bisa di miliki oleh model "Author"
+        // melalui fk "author_id"
+        return $this->belongsTo('App\Models\pegawai', 'id_karyawan');
+    }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cuti;
+use App\Models\Pegawai;
+
 use Illuminate\Http\Request;
 
 class CutiController extends Controller
@@ -15,7 +17,7 @@ class CutiController extends Controller
     public function index()
     {
         $cuti = Cuti::all();
-        return view('cuti.index', compact('cuti'));
+        return view('Cuti.index', compact('cuti'));
     }
 
     /**
@@ -25,7 +27,8 @@ class CutiController extends Controller
      */
     public function create()
     {
-        return view('cuti.create');
+        $pegawai = Pegawai::all();
+        return view('Cuti.create', compact('pegawai'));
     }
 
     /**
@@ -37,18 +40,17 @@ class CutiController extends Controller
     public function store(Request $request)
     {
         //
-        $validated = $request->validate([
-            'pegawai' => 'required'
-        ]);
+        // $validated = $request->validate([
+        //     'cuti' => 'required'
+        // ]);
 
         $cuti = new Cuti;
-        //db              create
-        $cuti->cuti = $request->cuti;
+        $cuti->id_kar = $request->id_kar;
         $cuti->nik = $request->nik;
         $cuti->tgl_cuti = $request->tgl_cuti;
         $cuti->jumlah = $request->jumlah;
         $cuti->save();
-        return redirect()->route('cuti.index');
+        return redirect()->route('Cuti.index');
     }
 
     /**
@@ -57,9 +59,11 @@ class CutiController extends Controller
      * @param  \App\Models\Cuti  $cuti
      * @return \Illuminate\Http\Response
      */
-    public function show(Cuti $cuti)
+    public function show($id)
     {
-        //
+        $cuti = Cuti::findOrFail($id);
+        return view('Cuti.show', compact('cuti'));
+        
     }
 
     /**
@@ -68,10 +72,12 @@ class CutiController extends Controller
      * @param  \App\Models\Cuti  $cuti
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cuti $cuti)
+    public function edit($id)
     {
-        //
+        $cuti = Cuti::findOrFail($id);
+        return view('Cuti.edit', compact('cuti'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -80,9 +86,21 @@ class CutiController extends Controller
      * @param  \App\Models\Cuti  $cuti
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cuti $cuti)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nik' => 'required',
+            'tgl_cuti' => 'required',
+            'jumlah' => 'required',
+        ]);
+
+        $cuti = Cuti::findOrFail($id);
+        $cuti->id_kar = $request->id_kar;
+        $cuti->nik = $request->nik;
+        $cuti->tgl_cuti = $request->tgl_cuti;
+        $cuti->jumlah = $request->jumlah;
+        $cuti->save();
+        return redirect()->route('Cuti.index');
     }
 
     /**
@@ -91,10 +109,10 @@ class CutiController extends Controller
      * @param  \App\Models\Cuti  $cuti
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cuti $cuti)
+    public function destroy($id)
     {
         $cuti = Cuti::findOrFail($id);
         $cuti->delete();
-        return redirect()->route('cuti.index');
+        return redirect()->route('Cuti.index');
     }
 }
