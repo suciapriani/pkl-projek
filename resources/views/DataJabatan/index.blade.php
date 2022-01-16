@@ -15,27 +15,29 @@ Dashboard
             Data Jabatan
             <a href="{{ route('DataJabatan.create')}}" class="btn btn-primary float-right">Tambah</a>
         </div>
-        <!-- /.card-heading -->
+        
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table" id="example">
                     <thead>
                                 <tr>
-                                    <th>Nomor</th>
+                                    <th>No</th>
                                     <th>Jabatan</th>
                                     <th>Golongan</th> 
                                     <th>Gaji Pokok</th>
                                     <th>Tunjangan Jabatan</th>
                                     <th>Action</th>
                                 </tr>
+                                </thead>
+                                 <tbody>
                                 @php $no=1; @endphp
                                 @foreach ($jabatan as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->jabatan }}</td>
                                         <td>{{ $data->golongan }}</td>
-                                        <td>{{ $data->gaji_pokok }}</td>
-                                        <td>{{ $data->tunjangan_jabatan }}</td>
+                                        <td>Rp.{{ $data->gaji_pokok }}</td>
+                                        <td>Rp.{{ $data->tunjangan_jabatan }}</td>
                     
                                         <td>
                                         <form action="{{ route('DataJabatan.destroy', $data->id) }}" method="post">
@@ -61,7 +63,6 @@ Dashboard
     </div>
 </div>
 @endsection
-
 @section('css')
 <link rel="stylesheet" href="{{asset('DataTables/datatables.min.css')}}">
 @endsection

@@ -9,26 +9,25 @@ Dashboard
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Edit Jabatan</div>
-                    <div class="card-body">
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+        <div class="card-body">
+            <div class="table-responsive">
+            <div class="card-header"><h5>Edit Jabatan</h5></div>
+                <table class="table" id="example">                                  
                         @if($errors->any())
-                        <div class="alert alert-denger">
                             <ul>
                                 @foreach($errors->all() as $error)
                                 <li>{{$error}}</li>
                                 @endforeach
                             </ul>
-                            <div>
                                 @endif
                         <form action="{{ route('DataJabatan.update', $jabatan->id) }}" method="post" accept="">
                             @csrf
                             @method('put')
-                           <div class="col-md-12">
-                            <div class="form-group">
+                            <br>
+                             <div class="panel-body">
                                 <label for="">Jabatan</label>
                                 <input type="text" name="jabatan" value="{{ $jabatan->jabatan }}"
                                     class="form-control @error('jabatan') is-invalid @enderror">
@@ -38,8 +37,8 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-12">
-                            <div class="form-group">
+                            <br>
+                             <div class="panel-body">
                                 <label for="">golongan</label>
                                 <input type="text" name="golongan" value="{{ $jabatan->golongan }}"
                                     class="form-control @error('golongan') is-invalid @enderror">
@@ -49,8 +48,8 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-12">
-                            <div class="form-group">
+                            <br>
+                             <div class="panel-body">
                                 <label for="">gaji pokok</label>
                                 <input type="text" name="gaji_pokok" value="{{ $jabatan->gaji_pokok }}"
                                     class="form-control @error('gaji_pokok') is-invalid @enderror">
@@ -60,8 +59,8 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                           <div class="col-md-12">
-                            <div class="form-group">
+                            <br>
+                             <div class="panel-body">
                                 <label for="">Tunjangan</label>
                                 <input type="text" name="tunjangan_jabatan" value="{{ $jabatan->tunjangan_jabatan }}"
                                     class="form-control @error('tunjangan_jabatan') is-invalid @enderror">
@@ -71,8 +70,8 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                          
-                            <div class="form-group">
+                            <br>
+                             <div class="panel-body">
                                 <button type="reset" class="btn btn-outline-warning">Reset</button>
                                 <button type="submit" class="btn btn-outline-primary">Save</button>
                             </div>

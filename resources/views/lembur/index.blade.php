@@ -22,10 +22,10 @@ Dashboard
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>nama karyawan</th>
-                                    <th>nik</th>
-                                    <th>tgl_lembur</th>
-                                    <th>jumlah</th>
+                                    <th>Nama Pegawai</th>
+                                    <th>Nik</th>
+                                    <th>Tanggal Lembur</th>
+                                    <th>Jumlah</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -35,7 +35,7 @@ Dashboard
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->pegawais->nama }}</td>
-                                        <td>{{ $data->nik }}</td>
+                                        <td>{{ $data->pegawais->nik }}</td>
                                         <td>{{ $data->tgl_lembur }}</td>
                                         <td>{{ $data->jumlah }}</td>
                                         <td>

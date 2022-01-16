@@ -16,8 +16,11 @@ Dashboard
                 <div class="card">
                     <div class="card-header">Data Pegawai</div>
                     <div class="card-body">
-                    <div class="form-group">
-                               
+                            <div class="form-group">
+                                <label for="">Jabatan</label>
+                                <input type="text" name="jabatan" value="{{ $pegawai->jabatans->jabatan }}" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Nik</label>
                                 <input type="text" name="nik" value="{{ $pegawai->nik }}" class="form-control" readonly>
                             </div>
@@ -40,11 +43,7 @@ Dashboard
                             <div class="form-group">
                                 <label for="">No Telepon</label>
                                 <input type="text" name="no_telp" value="{{ $pegawai->no_telp }}" class="form-control" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Jabatan</label>
-                                <input type="text" name="jabatan" value="{{ $pegawai->jabatan }}" class="form-control" readonly>
-                            </div>
+                            </div>  
                             <div class="form-group">
                                 <label for="">Golongan</label>
                                 <input type="text" name="golongan" value="{{ $pegawai->golongan }}" class="form-control" readonly>
@@ -52,8 +51,7 @@ Dashboard
                             <div class="form-group">
                                 <br>
                                 <a href="{{ url('admin/Pegawai') }}" class="btn btn-block btn-outline-primary">Kembali</a>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

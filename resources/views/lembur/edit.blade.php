@@ -9,26 +9,18 @@ Dashboard
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Edit lembur</div>
-                    <div class="card-body">
-                        @if($errors->any())
-                        <div class="alert alert-denger">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                <li>{{$error}}</li>
-                                @endforeach
-                            </ul>
-                            <div>
-                                @endif
-                        <form action="{{ route('Lembur.update', $lembur->id) }}" method="post" accept="">
+@section('content')
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <form Action="{{ route('Lembur.update', $lembur->id)}}" method="POST">
+                                     <!-- /.card-heading -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table" id="example">
                             @csrf
                             @method('put')
-                           <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="panel-body">
                                 <label for="">karyawan</label>
                                 <input type="text" name="id_karyawan" value="{{ $lembur->id_karyawan }}"
                                     class="form-control @error('id_karyawan') is-invalid @enderror">
@@ -38,8 +30,8 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-12">
-                            <div class="form-group">
+                            <br>
+                             <div class="panel-body">
                                 <label for="">Nik</label>
                                 <input type="text" name="nik" value="{{ $lembur->nik }}"
                                     class="form-control @error('nik') is-invalid @enderror">
@@ -49,8 +41,8 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-12">
-                            <div class="form-group">
+                            <br>
+                             <div class="panel-body">
                                 <label for="">Tanggal Lembur</label>
                                 <input type="date" name="tgl_lembur" value="{{ $lembur->tgl_lembur }}"
                                     class="form-control @error('tgl_lembur') is-invalid @enderror">
@@ -60,8 +52,8 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                           <div class="col-md-12">
-                            <div class="form-group">
+                            <br>
+                            <div class="panel-body">
                                 <label for="">Jumlah</label>
                                 <input type="text" name="jumlah" value="{{ $lembur->jumlah }}"
                                     class="form-control @error('jumlah') is-invalid @enderror">
@@ -71,8 +63,8 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                          
-                            <div class="form-group">
+                            <br>
+                            <div class="panel-body">
                                 <button type="reset" class="btn btn-outline-warning">Reset</button>
                                 <button type="submit" class="btn btn-outline-primary">Save</button>
                             </div>

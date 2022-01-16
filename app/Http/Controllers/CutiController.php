@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cuti;
 use App\Models\Pegawai;
 
+
+
 use Illuminate\Http\Request;
 
 class CutiController extends Controller
@@ -44,6 +46,7 @@ class CutiController extends Controller
         //     'cuti' => 'required'
         // ]);
 
+        
         $cuti = new Cuti;
         $cuti->id_kar = $request->id_kar;
         $cuti->nik = $request->nik;

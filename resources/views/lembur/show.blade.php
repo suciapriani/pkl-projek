@@ -18,12 +18,12 @@ Dashboard
                     <div class="card-body">
                     <div class="form-group">
                                 <label for="">karyawan</label>
-                                <input type="text" name="id_karyawan" value="{{ $lembur->id_karyawan }}" class="form-control" readonly>
+                                <input type="text" name="id_karyawan" value="{{ $lembur->pegawais->nama }}" class="form-control" readonly>
                             </div>
                     <div class="form-group">
                                 <label for="">Nik</label>
                                 <br>
-                                <input type="text" name="nik" value="{{ $lembur->nik }}" class="form-control" readonly>
+                                <input type="text" name="nik" value="{{ $lembur->pegawais->nik }}" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="">Tanggal lembur</label>

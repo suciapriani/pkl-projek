@@ -19,4 +19,8 @@ class Lembur extends Model
         // melalui fk "author_id"
         return $this->belongsTo('App\Models\pegawai', 'id_karyawan');
     }
+    public function penggajians()
+    {
+        return $this->hasMany('App\Models\lembur', 'id_lembur');
+    }
 }

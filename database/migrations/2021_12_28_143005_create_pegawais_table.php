@@ -17,13 +17,12 @@ class CreatePegawaisTable extends Migration
             $table->id();
             $table->bigInteger('id_jabatan')->unsigned();
             $table->foreign('id_jabatan')->references('id')->on('jabatans');
-            $table->integer('nik');
+            $table->bigInteger('nik');
             $table->string('nama');
             $table->string('alamat');
             $table->string('tgl_lahir');
             $table->string('jenis_kelamin');
-            $table->integer('no_telp');
-            $table->string('jabatan');
+            $table->string('no_telp');
             $table->string('golongan');
             $table->timestamps();
         });

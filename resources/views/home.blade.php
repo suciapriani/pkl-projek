@@ -6,19 +6,25 @@
 
 Dashboard
 
-@endsection
+@stop
 
+@role('admin')
 @section('content')
 
 Welcome to this beautiful admin panel.
 
-@endsection
+@stop
+@endrole
 
-@section('css')
+@role('pengguna')
+@section('content')
 
-@endsection
+Welcome to this beautiful pengguna panel.
+
+@stop
+@endrole
 
 @section('js')
 
-@endsection
+@stop
 

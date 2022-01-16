@@ -8,19 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class Penggajian extends Model
 {
     use HasFactory;
-    protected $visible = ['id_karyawan','id_jabatan','lemburan', 'potongan', 'jumlah'];
-    protected $fillable = ['id_karyawan','id_jabatan','lemburan', 'potongan', 'jumlah'];
+    protected $visible = ['id_pegawai','id_jabatan','id_lembur', 'id_cuti', 'total'];
+    protected $fillable = ['id_pegawai','id_jabatan','id_lembur', 'id_cuti', 'total'];
     public $timestamps = true;
 
     
     public function pegawais()
     {
-        // data dari Model "pegawai" bisa di miliki oleh model "penggajian"
-        // melalui fk "penggajian_id"
-        return $this->belongsTo('App\Models\pegawai', 'id_karyawan');
+        // data dari Model "pegawai" dimiliki "penggajian"
+        // melalui induk "pegawai_id"
+        return $this->belongsTo('App\Models\pegawai', 'id_pegawai');
     }
-    public function jabatan()
+    public function jabatans()
     {
-        return $this->hasMany('App\Models\jabatan', 'id_jabatan');
+        return $this->belongsTo('App\Models\jabatan', 'id_jabatan');
+    }
+    public function lemburs()
+    {
+        return $this->belongsTo('App\Models\lembur', 'id_lembur');
+    }
+    public function cutis()
+    {
+        return $this->belongsTo('App\Models\cuti', 'id_cuti');
     }
 }

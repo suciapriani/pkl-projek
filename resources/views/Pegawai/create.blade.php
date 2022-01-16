@@ -10,31 +10,27 @@ Dashboard
 @endsection
 
 @section('content')
-<div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Data Pegawai</div>
-                    <div class="card-body">
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+        <!-- /.card-heading -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table" id="example">
                         <form action="{{ route('Pegawai.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <!-- <div class="panel-body">
-                                        <label>id_jabatan</label>
-                                        <input type="text" class="form-control" name="id_jabatan">
-                                     </div> -->
+                           <div class="panel-body">
+                               <label>Pilih Jabatan</label>
+                               <select name="id_jabatan" class="form-control">
+                                @foreach($jabatan as $data)
+                               <option value="{{$data->id}}">{{$data->jabatan}}</option>
+                               @endforeach
+                               </select>
 
-                                         <div class="panel-body">
-                                            <label>id_jabatan</label>
-                                            <select name="id_jabatan" class="form-control">
-                                                @foreach($jabatan as $data)
-                                                <option value="{{$data->id}}">{{$data->jabatan}}</option>
-                                                @endforeach
-                                            </select>
-
-                                         </div> 
+                            </div> 
                             <div class="form-group">
-                                <label for="">nik</label>
-                                <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror">
+                                <label for="">Nik</label>
+                                <input type="number" name="nik" class="form-control @error('nik') is-invalid @enderror">
                                 @error('nik')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -63,7 +59,7 @@ Dashboard
                             </div>
                             
                             <div class="form-group">
-                                <label for=""> Tgl_lahir </label>
+                                <label for=""> Tanggal Lahir </label>
                                 <input type="date" name="tgl_lahir" class="form-control @error('tgl_lahir') is-invalid @enderror">
                                 @error('tgl_lahir')
                                     <span class="invalid-feedback" role="alert">
@@ -88,19 +84,6 @@ Dashboard
                                 <label for=""> No Telepon </label>
                                 <input type="text" name="no_telp" class="form-control @error('no_telp') is-invalid @enderror">
                                 @error('no_telp')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="">Jabatan</label>
-                                <select name="jabatan" class="form-control @error('jabatan') is-invalid @enderror">
-                                    <option value=""></option>
-                                        <option value="karyawan">karyawan</option>
-                                        <option value="menejer">menejer</option>
-                                </select>
-                                @error('jabatan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

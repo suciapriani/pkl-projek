@@ -22,10 +22,10 @@ Dashboard
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>id_karyawan</th>
-                                    <th>nik</th>
-                                    <th>tgl_cuti</th>
-                                    <th>jumlah</th>
+                                    <th>Nama Pegawai</th>
+                                    <th>Nik</th>
+                                    <th>Tanggal Cuti</th>
+                                    <th>Jumlah</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -34,8 +34,8 @@ Dashboard
                                 @foreach ($cuti as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $data->id_kar }}</td>
-                                        <td>{{ $data->nik }}</td>
+                                        <td>{{ $data->pegawais->nama}}</td>
+                                        <td>{{ $data->pegawais->nik }}</td>
                                         <td>{{ $data->tgl_cuti }}</td>
                                         <td>{{ $data->jumlah }}</td>
                                         <td>

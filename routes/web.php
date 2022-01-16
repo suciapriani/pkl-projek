@@ -86,8 +86,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::resource('Lembur', LemburController::class);
     Route::resource('Cuti', CutiController::class);
     Route::resource('Penggajian', PenggajianController::class);
+    // Route::resource('laporan', PenggajianController::class);
 
 
+Route::get('laporan', [PenggajianController::class, 'laporan']);
 
 
 

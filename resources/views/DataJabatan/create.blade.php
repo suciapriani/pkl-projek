@@ -9,12 +9,13 @@ Dashboard
 @endsection
 
 @section('content')
-<div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Data Pegawai</div>
-                    <div class="card-body">
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+        <!-- /.card-heading -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table" id="example">
                         <form action="{{ route('DataJabatan.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">

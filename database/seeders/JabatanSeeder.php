@@ -15,9 +15,11 @@ class JabatanSeeder extends Seeder
     {
         //
         $jabatan = [
-            ['jabatan'=>'karyawan','golongan'=>'staf',
-            'gaji_pokok'=>'RP.2.000.000','tunjangan_jabatan'=>'Rp.50000'],
-        
+            ['jabatan'=>'karyawan','golongan'=>'Pegawai','gaji_pokok'=>'2000000','tunjangan_jabatan'=>'50000'],
+            ['jabatan'=>'HRD','golongan'=>'Pegawai','gaji_pokok'=>'2500000','tunjangan_jabatan'=>'50000'],
+            ['jabatan'=>'Menejer','golongan'=>'Staf','gaji_pokok'=>'3000000','tunjangan_jabatan'=>'50000'],
+            ['jabatan'=>'Sekertaris','golongan'=>'Admin','gaji_pokok'=>'3500000','tunjangan_jabatan'=>'50000'],
+
 
         ];
         //masukan data ke database

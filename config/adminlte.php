@@ -251,16 +251,19 @@ return [
         [
             'text'    => 'mentor data',
             'icon'    => 'fas fa-align-justify',
+            'can' => 'AksesAdmin',
             'submenu' => [
                 [
                     'text' => 'Data Pegawai',
                     'icon'    => 'far fa-id-card',
                     'url'  => 'admin/Pegawai',
+                    'can' => 'AksesAdmin'
                 ],
                 [
                     'text'    => 'Data Jabatan',
                     'icon'    => 'far fa-id-card',
                     'url'     => 'admin/DataJabatan',
+                    'can' => 'AksesAdmin'
                 ],
             ],
         ],
@@ -269,36 +272,29 @@ return [
             'text'       => 'Lembur',
             'icon'       => 'far fa-chart-bar',
             'url'        => 'admin/Lembur',
+            'can' => 'AksesAdmin'
         ],
         [
             'text'       => 'Cuti',
             'icon'       => 'far fa-chart-bar',
             'url'        => 'admin/Cuti',
+            'can' => 'AksesAdmin'
         ],
         [
             'text'       => 'Penggajian',
             'icon'       => 'far fa-clipboard',
             'url'        => 'admin/Penggajian',
+            'can' => 'AksesAdmin'
         ],
         [
             'text'    => 'Laporan',
             'icon'    => 'far fa-file-alt',
-            'submenu' => [
-                [
-                    'text'    => 'Laporan Lembur',
-                    'url'     => '#',
-                ],
-                [
-                    'text'    => 'Laporan Cuti',
-                    'url'     => '#',
-                ],
-                [
-                    'text'    => 'Laporan Gaji',
-                    'url'     => '#',
+            'can' => 'AksesAdmin',
+            'url'     => 'admin/laporan',
                 ],
             ],
-        ],
-    ],
+        
+    
    
 
     /*

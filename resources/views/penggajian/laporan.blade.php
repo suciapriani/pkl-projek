@@ -11,17 +11,16 @@ Dashboard
 @section('content')
 <div class="col-lg-12">
     <div class="card">
-        <div class="card-header">
-           Penggajian
-            <a href="{{ route('Penggajian.create')}}" class="btn btn-primary float-right">Tambah</a>
-        </div>
+        <div class = "card-header">
+        <button onclick = "window.print()" class = "btn btn-primary"><i class = "fa fa-print">Print</i></button>
+</div>
         <!-- /.card-heading -->
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table" id="example">
+                <table class = "table" border = "1" id="example">
                             <thead>
                                 <tr>
-                                    <th>No</th>
+                                <th>No</th>
                                     <th>Nama Pegawai</th>
                                     <th>Jabatan</th>
                                     <th>golongan</th>
@@ -30,13 +29,12 @@ Dashboard
                                     <th>gaji pokok</th>
                                     <th>tunjangan</th>
                                     <th>total</th>
-                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                  <tbody>
-                                @php $no=1; @endphp
-                                @foreach ($penggajian as $data)
-                                    <tr>
+                                 @php $no=1; @endphp
+                                @foreach ($laporan as $data)
+                                <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->pegawais->nama }}</td>
                                         <td>{{ $data->jabatans->jabatan }}</td>
@@ -46,21 +44,10 @@ Dashboard
                                         <td>Rp.{{ $data->jabatans->gaji_pokok }}</td>
                                         <td>Rp.{{ $data->jabatans->tunjangan_jabatan}}</td>
                                         <td>Rp.{{ $data->total }}</td>
-                                        <td>
-                                        <form action="{{ route('Penggajian.destroy', $data->id) }}" method="post">
-                                                @method('delete')
-                                                @csrf
-                                               
-                                                <a href="{{ route('Penggajian.show', $data->id) }}"
-                                                    class="btn btn-outline-warning">Show</a>
-                                                <button type="submit" class="btn btn-outline-danger"
-                                                    onclick="return confirm('Are you sure?');">Delete</button>
-                                            </form>
-                                        </td>
+
                                     </tr>
                                 @endforeach
-                        
-                            </tbody>
+                        </tbody>
                    </table>
                 </div>
                <!-- /.table-responsive -->
@@ -68,20 +55,4 @@ Dashboard
         <!-- /.card-body -->
     </div>
 </div>
-
-
 @endsection
-@section('css')
-<link rel="stylesheet" href="{{asset('DataTables/datatables.min.css')}}">
-@endsection
-
-@section('js')
-    <script src="{{asset('DataTables/datatables.min.js')}}"></script>
-    <script>
-        $(document).ready(function(){
-            $('#example').DataTable();
-        });
-    </script>
-@endsection
-
-

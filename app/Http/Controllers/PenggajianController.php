@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Penggajian;
 use App\Models\Pegawai;
+use App\Models\Jabatan;
+use App\Models\Lembur;
+use App\Models\Cuti;
+
+
+
 
 use Illuminate\Http\Request;
 
@@ -19,7 +25,11 @@ class PenggajianController extends Controller
         $penggajian = Penggajian::all();
         return view('Penggajian.index', compact('penggajian'));
     }
-
+    public function laporan()
+    {
+        $laporan = Penggajian::all();
+        return view('Penggajian.laporan', compact('laporan'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -28,8 +38,13 @@ class PenggajianController extends Controller
     public function create()
     {
         $pegawai = Pegawai::all();
-        return view('Penggajian.create', compact('pegawai',));     }
+        $jabatan = Jabatan::all();
+        $lembur = Lembur::all();
+        $cuti = Cuti::all();
 
+
+        return view('Penggajian.create', compact('pegawai','jabatan','lembur','cuti'));     
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -38,22 +53,22 @@ class PenggajianController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // $validated = $request->validate([
-        //     'penggajian' => 'required'
-        // ]);
-
         $penggajian = new Penggajian;
         //db              create
-        $penggajian->id_karyawan = $request->id_karyawan;
+        $penggajian->id_pegawai = $request->id_pegawai;
         $penggajian->id_jabatan = $request->id_jabatan;
-        $penggajian->lemburan = $request->lemburan;
-        $penggajian->potongan = $request->potongan;
-        $penggajian->jumlah = $request->jumlah;
+        $penggajian->id_lembur = $request->id_lembur;
+        $penggajian->id_cuti = $request->id_cuti;
+       
+        $jabatan = Jabatan::findOrFail($request->id_jabatan);
+        $lembur = Lembur::findOrFail($request->id_lembur);
+        $cuti = Cuti::findOrFail($request->id_cuti);
+        $penggajian->total = $jabatan['jumlah'] + $jabatan['gaji_pokok'] + $lembur['jumlah'] - $cuti['jumlah'] + $jabatan['tunjangan_jabatan'];
         $penggajian->save();
         return redirect()->route('Penggajian.index');
     }
 
+  
     /**
      * Display the specified resource.
      *
@@ -74,8 +89,8 @@ class PenggajianController extends Controller
      */
     public function edit($id)
     {
-        $penggajian = Penggajian::findOrFail($id);
-        return view('Penggajian.edit', compact('penggajian'));
+        // $penggajian = Penggajian::findOrFail($id);
+        // return view('Penggajian.edit', compact('penggajian'));
     }
 
     /**
@@ -87,17 +102,17 @@ class PenggajianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'lemburan' => 'required',
-            'potongan' => 'required',
-            'jumlah' => 'required',
-
-        ]);
-        $penggajian->id_karyawan = $request->id_karyawan;
+        $penggajian = new Penggajian;
+        //db              create
+        $penggajian->id_pegawai = $request->id_pegawai;
         $penggajian->id_jabatan = $request->id_jabatan;
-        $penggajian->lemburan = $request->lemburan;
-        $penggajian->potongan = $request->potongan;
-        $penggajian->jumlah = $request->jumlah;
+        $penggajian->id_lembur = $request->id_lembur;
+        $penggajian->id_cuti = $request->id_cuti;
+       
+        $jabatan = Jabatan::findOrFail($request->id_jabatan);
+        $lembur = Lembur::findOrFail($request->id_lembur);
+        $cuti = Cuti::findOrFail($request->id_cuti);
+        $penggajian->total = $jabatan['jumlah'] + $jabatan['gaji_pokok'] + $lembur['jumlah'] - $cuti['jumlah'] + $jabatan['tunjangan_jabatan'];
         $penggajian->save();
         return redirect()->route('Penggajian.index');
     }  
@@ -114,4 +129,5 @@ class PenggajianController extends Controller
         $penggajian->delete();
         return redirect()->route('Penggajian.index');
     }
+    
 }

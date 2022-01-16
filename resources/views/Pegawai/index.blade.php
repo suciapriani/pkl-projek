@@ -26,10 +26,9 @@ Dashboard
                                     <th>Nik</th>
                                     <th>Nama</th>
                                     <th>Alamat</th>
-                                    <th>Tgl Lahir</th>
+                                    <th>Tanggal Lahir</th>
                                     <th>Jenis Kelamin</th>
-                                    <th>No Tlp</th>
-                                    <th>Jabatan</th>
+                                    <th>No Telepone</th>                                  
                                     <th>Golongan</th>
                                     <th>Action</th>
                                 </tr>
@@ -45,8 +44,7 @@ Dashboard
                                         <td>{{ $data->alamat }}</td>
                                         <td>{{ $data->tgl_lahir }}</td>
                                         <td>{{ $data->jenis_kelamin }}</td>
-                                        <td>{{ $data->no_telp }}</td>
-                                        <td>{{ $data->jabatan}}</td>
+                                        <td>{{ $data->no_telp }}</td>                                  
                                         <td>{{ $data->golongan}}</td>
                                         <td>
                                         <form action="{{ route('Pegawai.destroy', $data->id) }}" method="post">

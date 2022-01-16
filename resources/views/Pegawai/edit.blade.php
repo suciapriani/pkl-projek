@@ -17,7 +17,6 @@ Dashboard
                     <div class="card-body">
                         <form action="{{ route('Pegawai.update', $pegawai->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
-                           
                             @method('put')
                             <div class="form-group">
                                 <label for="">jabatan</label>
@@ -84,16 +83,6 @@ Dashboard
                                 <input type="text" name="no_telp" value="{{ $pegawai->no_telp }}"
                                     class="form-control @error('no_telp') is-invalid @enderror">
                                 @error('no_telp')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="">Jabatan</label>
-                                <input type="text" name="jabatan" value="{{ $pegawai->jabatan }}"
-                                    class="form-control @error('jabatan') is-invalid @enderror">
-                                @error('jabatan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

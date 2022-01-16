@@ -19,4 +19,8 @@ class Cuti extends Model
         // melalui fk "author_id"
         return $this->belongsTo('App\Models\pegawai', 'id_kar');
     }
+    public function penggajians()
+    {
+        return $this->hasMany('App\Models\lembur', 'id_lembur');
+    }
 }
