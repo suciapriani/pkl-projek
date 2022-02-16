@@ -37,7 +37,7 @@ Dashboard
                                         <td>{{ $data->pegawais->nama}}</td>
                                         <td>{{ $data->pegawais->nik }}</td>
                                         <td>{{ $data->tgl_cuti }}</td>
-                                        <td>{{ $data->jumlah }}</td>
+                                        <td>Rp.{{ $data->jumlah }}</td>
                                         <td>
                                         <form action="{{ route('Cuti.destroy', $data->id) }}" method="post">
                                                 @method('delete')

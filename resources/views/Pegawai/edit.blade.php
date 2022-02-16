@@ -18,16 +18,17 @@ Dashboard
                         <form action="{{ route('Pegawai.update', $pegawai->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
-                            <div class="form-group">
-                                <label for="">jabatan</label>
-                                <input type="text" name="id_jabatan" value="{{ $pegawai->id_jabatan }}"
-                                    class="form-control @error('pegawai') is-invalid @enderror">
+                            <div class="panel-body">
+                                <label for="">karyawan</label>
+                                <input type="text" name="id_jabatan" value="{{ $pegawai->id_jabatan}}"
+                                    class="form-control @error('id_jabatan') is-invalid @enderror">
                                 @error('id_jabatan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
+                            
                             <div class="form-group">
                                 <label for="">nik</label>
                                 <input type="text" name="nik" value="{{ $pegawai->nik }}"

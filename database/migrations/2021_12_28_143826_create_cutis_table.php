@@ -18,7 +18,7 @@ class CreateCutisTable extends Migration
             $table->bigInteger('id_kar')->unsigned();
             $table->foreign('id_kar')->references('id')->on('pegawais');
             $table->integer('nik');
-            $table->date('tgl_cuti');
+            $table->date('tgl_cuti')->nullable();
             $table->string('jumlah');
             $table->timestamps();
         });

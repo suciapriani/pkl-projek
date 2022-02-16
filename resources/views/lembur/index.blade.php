@@ -37,7 +37,7 @@ Dashboard
                                         <td>{{ $data->pegawais->nama }}</td>
                                         <td>{{ $data->pegawais->nik }}</td>
                                         <td>{{ $data->tgl_lembur }}</td>
-                                        <td>{{ $data->jumlah }}</td>
+                                        <td>Rp.{{ $data->jumlah }}</td>
                                         <td>
                                         <form action="{{ route('Lembur.destroy', $data->id) }}" method="post">
                                                 @method('delete')

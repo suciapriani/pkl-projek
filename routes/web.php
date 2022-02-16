@@ -34,6 +34,7 @@ Auth::routes(
 );
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/Profle', [App\Http\Controllers\PenggajianController::class, 'profile'])->name('profile');
 
 
 //hanya untuk role admin
@@ -58,7 +59,7 @@ Route::group(['prefix' => 'pengguna', 'middleware' => ['auth','role:pengguna']],
     });
 });
 
-
+// Route::get('/profile', [PenggajianController, 'profile'])->name('ProfileKaryawan');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::get('Pegawai', function(){
@@ -90,7 +91,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 
 
 Route::get('laporan', [PenggajianController::class, 'laporan']);
+Route::get('profile', [PegawaiController::class, 'profile']);
 
+Route::get('dashboard', 'App\Http\Controllers\AdminController@dashboard', function () {
+        return view('admin.dashboard');
+    })->name('DashboardAdmin');
 
+    Route::get('dashboardUser', 'App\Http\Controllers\AdminController@dashboardUser', function () {
+        return view('pengguna.dashboard');
+    })->name('DashboardUser');
 
 }); 
+
+// Route::get('Profile', 'App\Http\Controllers\ProfileController@index')->name('profile ');

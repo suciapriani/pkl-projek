@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Models\Pegawai;
-use App\Models\Jabatan;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Pegawai;
 class PegawaiController extends Controller
 {
     /**
@@ -17,12 +15,11 @@ class PegawaiController extends Controller
     public function index()
     {
         $pegawai = Pegawai::all();
-        return view('Pegawai.index', compact('pegawai'));
-    }
-    public function profile()
-    {
-        $profile = Pegawai::all();
-        return view('Pegawai.profile', compact('profile'));
+        return response()->json([
+            'success' => true,
+            'message' => 'Data pegawai',
+            'data' => $pegawai,
+        ], 200);
     }
 
     /**
@@ -32,8 +29,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $jabatan = Jabatan::all();
-        return view('Pegawai.create', compact('jabatan'));    
+        //
     }
 
     /**
@@ -44,10 +40,6 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        
-        // $validated = $request->validate([
-        //     'pegawai' => 'required'
-        // ]);
         $pegawai = new Pegawai;
         $pegawai->id_jabatan = $request->id_jabatan;
         $pegawai->nik = $request->nik;
@@ -58,55 +50,60 @@ class PegawaiController extends Controller
         $pegawai->no_telp = $request->no_telp;
         $pegawai->golongan = $request->golongan;
         $pegawai->save();
-        return redirect()->route('Pegawai.index');
+        return response()->json([
+            'success' => true,
+            'message' => 'Data pegawai Berhasil Dibuat',
+            'data' => $pegawai,
+        ], 201);
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pegawai  $pegawai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show($id)
     {
-        $pegawai = Pegawai::findOrFail($id);
-        return view('Pegawai.show', compact('pegawai'));
+        $pegawai = Pegawai::find($id);
+        if ($pegawai) {
+        return response()->json([
+            'success' => true,
+            'message' => 'Data pegawai ditemukan',
+            'data' => $pegawai,
+        ], 200);
+    } else {
+        return response()->json([
+            'success' => false,
+            'message' => 'Data pegawai tidak ditemukan',
+            'data' => [],
+        ], 404);
+      }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pegawai  $pegawai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit($id)
     {
-        $pegawai = Pegawai::findOrFail($id);
-        return view('Pegawai.edit', compact('pegawai'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pegawai  $pegawai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-     
-        $request->validate([
-            'nik' => 'required',
-            'nama' => 'required',
-            'alamat' => 'required',
-            'tgl_lahir' => 'required',
-            'jenis_kelamin' => 'required',
-            'no_telp' => 'required',
-            'golongan' => 'required',
-
-        ]);
-        $pegawai = Pegawai::findOrFail($id);
+        $pegawai = Pegawai::find($id);
+        if ($pegawai) {
         $pegawai->id_jabatan = $request->id_jabatan;
         $pegawai->nik = $request->nik;
         $pegawai->nama = $request->nama;
@@ -115,21 +112,43 @@ class PegawaiController extends Controller
         $pegawai->jenis_kelamin = $request->jenis_kelamin;
         $pegawai->no_telp = $request->no_telp;
         $pegawai->golongan = $request->golongan;
-        $pegawai->save();
-        return redirect()->route('Pegawai.index');
-      
+        $pegawai->save(); 
+        return response()->json([
+            'success' => true,
+            'message' => 'Data pegawai Berhasil diedit',
+            'data' => $pegawai,
+        ], 201);
+    } else {
+        return response()->json([
+            'success' => false,
+            'message' => 'Data pegawai tidak ditemukan',
+            'data' => [],
+        ], 404);
+      }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pegawai  $pegawai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $pegawai = Pegawai::findOrFail($id);
-        $pegawai->delete();
-        return redirect()->route('Pegawai.index');
+         $pegawai = Pegawai::find($id);
+        if ($pegawai) {
+            $pegawai->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Data pegawai Berhasil dihapus',
+                'data' => $pegawai,
+            ], 201);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data pegawai tidak ditemukan',
+                'data' => [],
+            ], 404);
+          }
     }
 }

@@ -27,7 +27,7 @@ Dashboard
                         <form action="{{ route('Cuti.update', $cuti->id) }}" method="post" accept="">
                             @csrf
                             @method('put')
-                           <div class="col-md-12">
+                           
                             <div class="form-group">
                                 <label for="">karyawan</label>
                                 <input type="text" name="id_kar" value="{{ $cuti->id_kar }}"
@@ -38,7 +38,7 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-12">
+                            
                             <div class="form-group">
                                 <label for="">Nik</label>
                                 <input type="text" name="nik" value="{{ $cuti->nik }}"
@@ -49,7 +49,7 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-12">
+                            
                             <div class="form-group">
                                 <label for="">Tanggal Lembur</label>
                                 <input type="date" name="tgl_cuti" value="{{ $cuti->tgl_cuti }}"
@@ -60,7 +60,7 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                           <div class="col-md-12">
+                           
                             <div class="form-group">
                                 <label for="">Jumlah</label>
                                 <input type="text" name="jumlah" value="{{ $cuti->jumlah }}"

@@ -4,7 +4,7 @@
 
 @section('content_header')
 
-Dashboard
+<h1 style="background-color: blue;"><center><font color=black>Laporan Penggajian Karyawan</color></h1>
 
 @endsection
 
@@ -47,6 +47,7 @@ Dashboard
 
                                     </tr>
                                 @endforeach
+                                
                         </tbody>
                    </table>
                 </div>
@@ -54,5 +55,6 @@ Dashboard
             </div>
         <!-- /.card-body -->
     </div>
+    
 </div>
 @endsection

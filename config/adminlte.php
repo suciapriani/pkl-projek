@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<h4>Penggajian </h4>',
+    'logo_img' => 'vendor/adminlte/dist/img/karyawan.jpeg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -226,27 +226,49 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'type'         => 'navbar-search',
+        //     'text'         => 'search',
+        //     'topnav_right' => true,
+        // ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'search',
+        // ],
 
         ['header' => 'ACCOUNT SETTINGS'],
+
         [
-            'text' => 'Dasboard',
-            'icon'    => '',
-            'url'  => 'home',
+            'text' => 'dashboard',
+            'url'  => 'admin/dashboard',
+            'icon' => 'fas fa-fw fa-home',
+            'can' => 'AksesAdmin'
+        ],
+
+        [
+            'text' => 'dashboard',
+            'url'  => 'admin/dashboardUser',
+            'icon' => 'fas fa-fw fa-home',
+            'can' => 'AksesPengguna'
+        ],
+
+        // [
+        //     'text' => 'Dasboard',
+        //     'icon'    => '',
+        //     'url'  => 'home',
+        // ],
+        [
+            'text'    => 'Profile',
+            'icon'    => 'far fa-file-alt',
+            'can' => 'AksesPengguna',
+            'url'     => 'admin/profile',
+            
         ],
         [
             'text'    => 'mentor data',
@@ -257,7 +279,7 @@ return [
                     'text' => 'Data Pegawai',
                     'icon'    => 'far fa-id-card',
                     'url'  => 'admin/Pegawai',
-                    'can' => 'AksesAdmin'
+                    'can' => 'AksesAdmin',
                 ],
                 [
                     'text'    => 'Data Jabatan',
@@ -267,7 +289,8 @@ return [
                 ],
             ],
         ],
-        ['header' => 'Transaksi'],
+        
+                
         [
             'text'       => 'Lembur',
             'icon'       => 'far fa-chart-bar',
@@ -284,15 +307,17 @@ return [
             'text'       => 'Penggajian',
             'icon'       => 'far fa-clipboard',
             'url'        => 'admin/Penggajian',
-            'can' => 'AksesAdmin'
+            'can' => 'AksesAdmin',
+
         ],
         [
-            'text'    => 'Laporan',
+            'text'    => 'Laporan Gaji',
             'icon'    => 'far fa-file-alt',
-            'can' => 'AksesAdmin',
+            'can' => ['AksesAdmin','AksesPengguna'],
             'url'     => 'admin/laporan',
-                ],
-            ],
+        ],
+       
+    ],
         
     
    

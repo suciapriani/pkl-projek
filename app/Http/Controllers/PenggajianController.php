@@ -20,6 +20,7 @@ class PenggajianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $penggajian = Penggajian::all();

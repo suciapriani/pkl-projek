@@ -35,14 +35,14 @@ class UserSeeder extends Seeder
         $user->password = Hash::make('12345678');
         $user->save();
     
-        $pengunjung = new User();
-        $pengunjung->name = 'pengunjung';
-        $pengunjung->email = 'pengunjung@gmail.com';
-        $pengunjung->password = Hash::make('12345678');
-        $pengunjung->save();
+        $karyawan = new User();
+        $karyawan->name = 'karyawan';
+        $karyawan->email = 'karyawan@gmail.com';
+        $karyawan->password = Hash::make('12345678');
+        $karyawan->save();
 
         $user->attachRole($admin);
-        $pengunjung->attachRole($pengguna);
+        $karyawan->attachRole($pengguna);
 
         // $user = new User();
         // $user->name = 'altaf faadhil';
