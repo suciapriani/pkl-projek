@@ -4,23 +4,24 @@
 
 @section('content_header')
 
-<h1 style="background-color: blue;"><center><font color=black>Laporan Penggajian Karyawan</color></h1>
-
+Dashboard
 @endsection
 
 @section('content')
 <div class="col-lg-12">
     <div class="card">
         <div class = "card-header">
-        <button onclick = "window.print()" class = "btn btn-primary"><i class = "fa fa-print">Print</i></button>
-</div>
-        <!-- /.card-heading -->
+            <button onclick = "window.print()" class = "btn btn-primary"><i class = "fa fa-print">Print</i></button>
+                </div>
+     <!-- /.card-heading -->
         <div class="card-body">
-            <div class="table-responsive">
-                <table class = "table" border = "1" id="example">
+           <h2 style="background-color: rgba(0, 153, 255, 0.83);"><center><font color= black><h3>Laporan Penggajian Karyawan</h3></color></h2>
+               <div class="table-responsive">
+                   <table class="table">
+                       <table class = "table" border = "1" id="example">
                             <thead>
                                 <tr>
-                                <th>No</th>
+                                    <th>No</th>
                                     <th>Nama Pegawai</th>
                                     <th>Jabatan</th>
                                     <th>golongan</th>
@@ -31,30 +32,37 @@
                                     <th>total</th>
                                 </tr>
                                 </thead>
-                                 <tbody>
-                                 @php $no=1; @endphp
+                                <tbody>
+                                @php $no=1; @endphp
                                 @foreach ($laporan as $data)
                                 <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $data->pegawais->nama }}</td>
-                                        <td>{{ $data->jabatans->jabatan }}</td>
-                                        <td>{{ $data->jabatans->golongan }}</td>
-                                        <td>Rp.{{ $data->lemburs->jumlah }}</td>
-                                        <td>Rp.{{ $data->cutis->jumlah }}</td>
-                                        <td>Rp.{{ $data->jabatans->gaji_pokok }}</td>
-                                        <td>Rp.{{ $data->jabatans->tunjangan_jabatan}}</td>
-                                        <td>Rp.{{ $data->total }}</td>
-
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $data->pegawais->nama }}</td>
+                                    <td>{{ $data->pegawais->jabatans->jabatan }}</td>
+                                    <td>{{ $data->pegawais->jabatans->golongan }}</td>
+                                    <td><span>
+                                    Rp.{{number_format($data->pegawais->lemburs->sum('jumlah'),2,",",".")}}
+                                    </span></td>
+                                    <td><span>
+                                        Rp.{{number_format($data->pegawais->cutis->sum('jumlah'),2,",",".")}}
+                                    </span></td>
+                                    <td><span>
+                                        Rp.{{number_format($data->pegawais->jabatans->gaji_pokok,2,",",".")}}
+                                    </span></td>
+                                    <td><span>
+                                        Rp.{{number_format($data->pegawais->jabatans->tunjangan_jabatan,2,",",".")}}
+                                    </span></td>
+                                    <td><span>
+                                        Rp.{{number_format($data->total,2,",",".")}}
+                                    </span></td>
                                     </tr>
                                 @endforeach
-                                
-                        </tbody>
-                   </table>
-                </div>
-               <!-- /.table-responsive -->
-            </div>
-        <!-- /.card-body -->
+                             </tbody>
+                             </table>
+                         </div>
+                     <!-- /.table-responsive -->
+                 </div>
+             <!-- /.card-body -->
+        </div>   
     </div>
-    
-</div>
 @endsection

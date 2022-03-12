@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lembur;
 use App\Models\Pegawai;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LemburController extends Controller
@@ -39,14 +40,13 @@ class LemburController extends Controller
      */
     public function store(Request $request)
     {
-        // $validated = $request->validate([
-        //     'lembur' => 'required'
-        // ]);
+        $validated = $request->validate([
+            'tgl_lembur' => 'required|date|after_or_equal:'.Carbon::now()->startOfMonth().'|before_or_equal:'.Carbon::now()->endOfMonth()
+        ]);
 
         $lembur = new Lembur;
         //db              create
         $lembur->id_karyawan = $request->id_karyawan;
-        $lembur->nik = $request->nik;
         $lembur->tgl_lembur = $request->tgl_lembur;
         $lembur->jumlah = $request->jumlah;
         $lembur->save();
@@ -74,8 +74,9 @@ class LemburController extends Controller
      */
     public function edit($id)
     {
+        $pegawai = Pegawai::all();
         $lembur = Lembur::findOrFail($id);
-        return view('Lembur.edit', compact('lembur'));  //
+        return view('Lembur.edit', compact('lembur','pegawai'));  //
     }
 
     /**
@@ -88,14 +89,12 @@ class LemburController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nik' => 'required',
-            'tgl_lembur' => 'required',
+            'tgl_lembur' => 'required|date|after_or_equal:'.Carbon::now()->startOfMonth().'|before_or_equal:'.Carbon::now()->endOfMonth(),
             'jumlah' => 'required',
 
         ]);
         $lembur = Lembur::findOrFail($id);
         $lembur->id_karyawan = $request->id_karyawan;
-        $lembur->nik = $request->nik;
         $lembur->tgl_lembur = $request->tgl_lembur;
         $lembur->jumlah = $request->jumlah;
         $lembur->save();

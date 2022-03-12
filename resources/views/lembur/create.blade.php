@@ -27,14 +27,7 @@ Dashboard
                                   @endforeach
                                   </select>
                             </div>            
-                            <div class="panel-body">
-                                 <label>nik</label>
-                                 <select name="nik" class="form-control">
-                                  @foreach($pegawai as $data)
-                                  <option value="{{$data->id}}">{{$data->nik}}</option>
-                                  @endforeach
-                                  </select>
-                            </div> 
+                           
                           
                             <div class="form-group">
                                 <label for="">Tanggal lembur </label>
@@ -47,7 +40,7 @@ Dashboard
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for=""> Jumlah </label>
+                                <label for=""> Nominal Uang </label>
                                 <input type="text" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror">
                                 @error('jumlah')
                                     <span class="invalid-feedback" role="alert">

@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Penggajian;
 use App\Models\Pegawai;
-use App\Models\Jabatan;
 use App\Models\Lembur;
 use App\Models\Cuti;
-
-
-
-
+use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class PenggajianController extends Controller
@@ -39,12 +36,11 @@ class PenggajianController extends Controller
     public function create()
     {
         $pegawai = Pegawai::all();
-        $jabatan = Jabatan::all();
         $lembur = Lembur::all();
         $cuti = Cuti::all();
 
 
-        return view('Penggajian.create', compact('pegawai','jabatan','lembur','cuti'));     
+        return view('Penggajian.create', compact('pegawai', 'lembur', 'cuti'));
     }
     /**
      * Store a newly created resource in storage.
@@ -54,22 +50,32 @@ class PenggajianController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'tgl_gajian' => 'required|date|after_or_equal:' . Carbon::now()->startOfMonth() . '|before_or_equal:' . Carbon::now()->endOfMonth(),
+                'id_pegawai' => Rule::unique('penggajians', 'id_pegawai')->where(function ($q) {
+                   return $q->whereBetween('tgl_gajian', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()]);
+                })
+            ],
+        );
+
+        $lembur = Lembur::where('id_karyawan', $request->id_pegawai)->whereBetween('tgl_lembur', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->sum('jumlah');
+        $cuti = Cuti::where('id_kar', $request->id_pegawai)->whereBetween('tgl_cuti', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->sum('jumlah');
+
+
         $penggajian = new Penggajian;
         //db              create
         $penggajian->id_pegawai = $request->id_pegawai;
-        $penggajian->id_jabatan = $request->id_jabatan;
-        $penggajian->id_lembur = $request->id_lembur;
-        $penggajian->id_cuti = $request->id_cuti;
-       
-        $jabatan = Jabatan::findOrFail($request->id_jabatan);
-        $lembur = Lembur::findOrFail($request->id_lembur);
-        $cuti = Cuti::findOrFail($request->id_cuti);
-        $penggajian->total = $jabatan['jumlah'] + $jabatan['gaji_pokok'] + $lembur['jumlah'] - $cuti['jumlah'] + $jabatan['tunjangan_jabatan'];
+        $penggajian->tgl_gajian = $request->tgl_gajian;
+
+        $pegawai = Pegawai::findOrFail($request->id_pegawai);
+
+        $penggajian->total = $pegawai->jabatans['gaji_pokok'] + $lembur - $cuti + $pegawai->jabatans['tunjangan_jabatan'];
         $penggajian->save();
         return redirect()->route('Penggajian.index');
     }
 
-  
+
     /**
      * Display the specified resource.
      *
@@ -103,20 +109,7 @@ class PenggajianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $penggajian = new Penggajian;
-        //db              create
-        $penggajian->id_pegawai = $request->id_pegawai;
-        $penggajian->id_jabatan = $request->id_jabatan;
-        $penggajian->id_lembur = $request->id_lembur;
-        $penggajian->id_cuti = $request->id_cuti;
-       
-        $jabatan = Jabatan::findOrFail($request->id_jabatan);
-        $lembur = Lembur::findOrFail($request->id_lembur);
-        $cuti = Cuti::findOrFail($request->id_cuti);
-        $penggajian->total = $jabatan['jumlah'] + $jabatan['gaji_pokok'] + $lembur['jumlah'] - $cuti['jumlah'] + $jabatan['tunjangan_jabatan'];
-        $penggajian->save();
-        return redirect()->route('Penggajian.index');
-    }  
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -130,5 +123,4 @@ class PenggajianController extends Controller
         $penggajian->delete();
         return redirect()->route('Penggajian.index');
     }
-    
 }

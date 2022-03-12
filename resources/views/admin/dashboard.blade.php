@@ -46,6 +46,26 @@ Beranda
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
+             <!-- fix for small devices only -->
+             <div class="clearfix hidden-md-up"></div>
+
+             <div class="col-12 col-sm-6 col-md-3">
+                 <div class="info-box mb-3">
+                     <span class="info-box-icon bg-success elevation-1"><i class="far fa-folder-open"></i></span>
+ 
+                     <div class="info-box-content">
+                         <span class="info-box-text">Absensi</span>
+                         <span class="info-box-number">
+                             {{$absen}} absen 
+                         </span>
+                         <a href ="http://localhost:8000/admin/Absen" class="small-box-footer"> More info<i class="fas fa-arraw-circle-right"></i></a>
+ 
+                     </div>
+                     <!-- /.info-box-content -->
+                 </div>
+                 <!-- /.info-box -->
+             </div>
+             <!-- /.col -->
 
             <!-- fix for small devices only -->
             <div class="clearfix hidden-md-up"></div>
@@ -96,6 +116,7 @@ Beranda
                         <a href ="http://localhost:8000/admin/Penggajian" class="small-box-footer"> More info<i class="fas fa-arraw-circle-right"></i></a>
 
                     </div>
+                    
                     <!-- /.info-box-content -->
                 </div>
                 <!-- /.info-box -->
@@ -103,5 +124,8 @@ Beranda
             <!-- /.col -->
         </div>
     </div>
+    </div>
+  
+
 
 @endsection

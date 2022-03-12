@@ -10,11 +10,12 @@ class AdminController extends Controller
     {
         $jabatan = DB::table('jabatans')->count();
         $pegawai = DB::table('pegawais')->count();
+        $absen = DB::table('absensis')->count();
         $lembur = DB::table('lemburs')->count();
         $cuti = DB::table('cutis')->count();
         $penggajian = DB::table('penggajians')->count();
 
-        return view('admin.dashboard', compact('jabatan','pegawai','lembur','cuti','penggajian'));
+        return view('admin.dashboard', compact('jabatan','pegawai','absen','lembur','cuti','penggajian'));
     }
 
     public function dashboardUser()

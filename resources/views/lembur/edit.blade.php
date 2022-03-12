@@ -20,27 +20,16 @@ Dashboard
                 <table class="table" id="example">
                             @csrf
                             @method('put')
+                           
                             <div class="panel-body">
-                                <label for="">karyawan</label>
-                                <input type="text" name="id_karyawan" value="{{ $lembur->id_karyawan }}"
-                                    class="form-control @error('id_karyawan') is-invalid @enderror">
-                                @error('id_karyawan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                 <label for="">karyawan</label>
+                                 <select name="id_karyawan" class="form-control">
+                                  @foreach($pegawai as $data)
+                                  <option value="{{$data->id}}">{{$data->nama}}</option>
+                                  @endforeach
+                                  </select>
                             </div>
-                            <br>
-                             <div class="panel-body">
-                                <label for="">Nik</label>
-                                <input type="text" name="nik" value="{{ $lembur->nik }}"
-                                    class="form-control @error('nik') is-invalid @enderror">
-                                @error('nik')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            
                             <br>
                              <div class="panel-body">
                                 <label for="">Tanggal Lembur</label>
@@ -54,7 +43,7 @@ Dashboard
                             </div>
                             <br>
                             <div class="panel-body">
-                                <label for="">Jumlah</label>
+                                <label for="">Nominal Uang</label>
                                 <input type="text" name="jumlah" value="{{ $lembur->jumlah }}"
                                     class="form-control @error('jumlah') is-invalid @enderror">
                                 @error('jumlah')

@@ -19,6 +19,7 @@ Dashboard
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Poto</th>
                                     <th>jabatan</th>
                                     <th>Nik</th>
                                     <th>Nama</th>
@@ -27,6 +28,8 @@ Dashboard
                                     <th>Jenis Kelamin</th>
                                     <th>No Telepone</th>                                  
                                     <th>Golongan</th>
+                                    <th>Action</th>
+
                                 </tr>
                                 </thead>
                                  <tbody>
@@ -34,6 +37,8 @@ Dashboard
                                 @foreach ($profile as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
+                                        <td><img src="{{ $data->image() }}" alt="" style="width:150px; height:150px;"
+                                            alt="gambar"></td>
                                         <td>{{ $data->jabatans->jabatan }}</td>
                                         <td>{{ $data->nik }}</td>
                                         <td>{{ $data->nama }}</td>
@@ -43,9 +48,9 @@ Dashboard
                                         <td>{{ $data->no_telp }}</td>                                  
                                         <td>{{ $data->golongan}}</td>
                                         <td>
-                                     
-                                               
-                                          
+                                                <a href="{{ route('Pegawai.show', $data->id) }}"
+                                                    class="btn btn-outline btn-sm btn btn-info">Show</a>
+                                        
                                         </td>
                                     </tr>
                                 @endforeach

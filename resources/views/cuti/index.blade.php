@@ -37,16 +37,17 @@ Dashboard
                                         <td>{{ $data->pegawais->nama}}</td>
                                         <td>{{ $data->pegawais->nik }}</td>
                                         <td>{{ $data->tgl_cuti }}</td>
-                                        <td>Rp.{{ $data->jumlah }}</td>
+                                        <td>Rp.{{number_format( $data->jumlah ,2,",",".") }}</td>
+
                                         <td>
                                         <form action="{{ route('Cuti.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
                                                 <a href="{{ route('Cuti.edit', $data->id) }}"
-                                                    class="btn btn-outline-info">Edit</a>
+                                                    class="btn btn-outline btn-sm btn btn-warning">Edit</a>
                                                 <a href="{{ route('Cuti.show', $data->id) }}"
-                                                    class="btn btn-outline-warning">Show</a>
-                                                <button type="submit" class="btn btn-outline-danger"
+                                                    class="btn btn-outline btn-sm btn btn-info">Show</a>
+                                                    <button type="submit" class="btn btn-outline btn-sm btn btn-danger"
                                                     onclick="return confirm('Are you sure?');">Delete</button>
                                             </form>
                                         </td>

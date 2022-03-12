@@ -22,10 +22,5 @@ class Jabatan extends Model
         // dari model "Book" melalui fk "author_id"
         return $this->hasMany('App\Models\pegawai', 'id_jabatan');
     }
-    public function penggajians()
-    {
-        // data model "Author" bisa memiliki banyak data
-        // dari model "Book" melalui fk "author_id"
-        return $this->hasMany('App\Models\penggajian', 'id_pegawai');
-    }
+    
 }

@@ -8,20 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Penggajian extends Model
 {
     use HasFactory;
-    protected $visible = ['id_pegawai','id_jabatan','id_lembur', 'id_cuti', 'total'];
-    protected $fillable = ['id_pegawai','id_jabatan','id_lembur', 'id_cuti', 'total'];
+    protected $visible = ['id_pegawai','id_lembur', 'id_cuti', 'total'];
+    protected $fillable = ['id_pegawai','id_lembur', 'id_cuti', 'total'];
     public $timestamps = true;
 
     
     public function pegawais()
     {
-        // data dari Model "pegawai" dimiliki "penggajian"
-        // melalui induk "pegawai_id"
         return $this->belongsTo('App\Models\pegawai', 'id_pegawai');
-    }
-    public function jabatans()
-    {
-        return $this->belongsTo('App\Models\jabatan', 'id_jabatan');
     }
     public function lemburs()
     {

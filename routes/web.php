@@ -3,9 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\LemburController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\PenggajianController;
+use App\Http\Controllers\CetakLaporanController;
+
 
 
 
@@ -70,6 +73,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
         return view('DataJabatan.index');
     })->middleware(['role:admin|pengguna']);
 
+    Route::get('Absen', function(){
+        return view('Absen.index');
+    })->middleware(['role:admin|pengguna']);
+
     Route::get('Lembur', function(){
         return view('Lembur.index');
     })->middleware(['role:admin|pengguna']);
@@ -84,11 +91,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 
     Route::resource('DataJabatan', JabatanController::class);
     Route::resource('Pegawai', PegawaiController::class);
+    Route::resource('Absen', AbsenController::class);
     Route::resource('Lembur', LemburController::class);
     Route::resource('Cuti', CutiController::class);
     Route::resource('Penggajian', PenggajianController::class);
     // Route::resource('laporan', PenggajianController::class);
 
+    // laporan
+    Route::get('cetak-laporan', 'App\Http\Controllers\CetakLaporanController@gajilaporan');
+    Route::post('cetak-laporan','App\Http\Controllers\CetakLaporanController@cetakgaji');
 
 Route::get('laporan', [PenggajianController::class, 'laporan']);
 Route::get('profile', [PegawaiController::class, 'profile']);
@@ -102,5 +113,6 @@ Route::get('dashboard', 'App\Http\Controllers\AdminController@dashboard', functi
     })->name('DashboardUser');
 
 }); 
+
 
 // Route::get('Profile', 'App\Http\Controllers\ProfileController@index')->name('profile ');

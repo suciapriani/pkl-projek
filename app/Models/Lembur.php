@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Lembur extends Model
 {
     use HasFactory;
-    protected $visible = ['id_karyawan','nik','tgl_lembur', 'jumlah'];
-    protected $fillable = ['id_karyawan','nik','tgl_lembur', 'jumlah'];
+    protected $visible = ['id_karyawan','tgl_lembur', 'jumlah'];
+    protected $fillable = ['id_karyawan','tgl_lembur', 'jumlah'];
     public $timestamps = true;
 
     
@@ -19,8 +19,9 @@ class Lembur extends Model
         // melalui fk "author_id"
         return $this->belongsTo('App\Models\pegawai', 'id_karyawan');
     }
-    public function penggajians()
-    {
-        return $this->hasMany('App\Models\lembur', 'id_lembur');
-    }
+    
+    // public function penggajians()
+    // {
+    //     return $this->hasMany('App\Models\lembur', 'id_lembur');
+    // }
 }

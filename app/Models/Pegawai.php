@@ -8,10 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Pegawai extends Model
 {
     use HasFactory;
-    protected $visible = ['id_jabatan','nik', 'nama', 'alamat','tgl_lahir','jenis_kelamin','no_telp','golongan'];
-    protected $fillable = ['id_jabatan','nik', 'nama', 'alamat','tgl_lahir','jenis_kelamin','no_telp','golongan'];
+    protected $visible = ['id_jabatan','nik','gambar', 'nama', 'alamat','tgl_lahir','jenis_kelamin','no_telp','golongan'];
+    protected $fillable = ['id_jabatan','nik','gambar', 'nama', 'alamat','tgl_lahir','jenis_kelamin','no_telp','golongan'];
     public $timestamps = true;
 
+    public function image()
+    {
+        if ($this->gambar && file_exists(public_path('images/' . $this->gambar))) {
+            return asset('images/' . $this->gambar);
+        } else {
+            return asset('images/no_image.jpg');
+        }
+    }
+
+    public function deleteImage()
+    {
+        if ($this->gambar && file_exists(public_path('images/' . $this->gambar))) {
+            return unlink(public_path('images/' . $this->gambar));
+        }
+    }
     
     public function jabatans()
     {
@@ -19,6 +34,12 @@ class Pegawai extends Model
         // melalui fk "id_jabatan"
         return $this->belongsTo('App\Models\jabatan', 'id_jabatan');
     }
+
+    public function absens()
+    {
+        return $this->hasMany('App\Models\absen', 'id_karyawan');
+    }
+    
     public function lemburs()
     {
         return $this->hasMany('App\Models\lembur', 'id_karyawan');

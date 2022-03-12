@@ -30,12 +30,12 @@ Dashboard
                                 <input type="date" name="tgl_cuti" value="{{ $cuti->tgl_cuti }}" class="form-control" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">jumlah</label>
-                                <input type="text" name="jumlah" value="{{ $cuti->jumlah }}" class="form-control" readonly>
+                                <label for="">Nominal Uang</label>
+                                <input type="text" name="jumlah" value="Rp.{{ number_format($cuti->jumlah) }}" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <br>
-                                <a href="{{ url('admin/cuti') }}" class="btn btn-block btn-outline-primary">Kembali</a>
+                                <a href="{{ url('admin/Cuti') }}" class="btn btn-block btn-outline-primary">Kembali</a>
                             </div>
                         </form>
                     </div>

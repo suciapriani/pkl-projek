@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cuti;
 use App\Models\Pegawai;
 
-
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -42,14 +42,14 @@ class CutiController extends Controller
     public function store(Request $request)
     {
         //
-        // $validated = $request->validate([
-        //     'cuti' => 'required'
-        // ]);
+        $validated = $request->validate([
+            'tgl_cuti' => 'required|date|after_or_equal:'.Carbon::now()->startOfMonth().'|before_or_equal:'.Carbon::now()->endOfMonth()
+        ]);
 
         
         $cuti = new Cuti;
         $cuti->id_kar = $request->id_kar;
-        $cuti->nik = $request->nik;
+       
         $cuti->tgl_cuti = $request->tgl_cuti;
         $cuti->jumlah = $request->jumlah;
         $cuti->save();
@@ -77,8 +77,9 @@ class CutiController extends Controller
      */
     public function edit($id)
     {
+        $pegawai = Pegawai::all();
         $cuti = Cuti::findOrFail($id);
-        return view('Cuti.edit', compact('cuti'));
+        return view('Cuti.edit', compact('cuti','pegawai'));
     }
 
 
@@ -92,14 +93,14 @@ class CutiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nik' => 'required',
-            'tgl_cuti' => 'required',
+           
+            'tgl_cuti' => 'required|date|after_or_equal:'.Carbon::now()->startOfMonth().'|before_or_equal:'.Carbon::now()->endOfMonth(),
             'jumlah' => 'required',
         ]);
 
         $cuti = Cuti::findOrFail($id);
         $cuti->id_kar = $request->id_kar;
-        $cuti->nik = $request->nik;
+       
         $cuti->tgl_cuti = $request->tgl_cuti;
         $cuti->jumlah = $request->jumlah;
         $cuti->save();

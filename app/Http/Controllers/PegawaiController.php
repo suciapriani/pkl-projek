@@ -51,6 +51,12 @@ class PegawaiController extends Controller
         $pegawai = new Pegawai;
         $pegawai->id_jabatan = $request->id_jabatan;
         $pegawai->nik = $request->nik;
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar');
+            $name = rand(1000, 999)."".$request->gambar->getClientOriginalName();
+            $image->move('images/', $name);
+            $pegawai->gambar = $name;
+        }
         $pegawai->nama = $request->nama;
         $pegawai->alamat = $request->alamat;
         $pegawai->tgl_lahir = $request->tgl_lahir;
@@ -81,8 +87,9 @@ class PegawaiController extends Controller
      */
     public function edit( $id)
     {
+        $jabatan = Jabatan::all();
         $pegawai = Pegawai::findOrFail($id);
-        return view('Pegawai.edit', compact('pegawai'));
+        return view('Pegawai.edit', compact('pegawai','jabatan'));
     }
 
     /**
@@ -109,6 +116,12 @@ class PegawaiController extends Controller
         $pegawai = Pegawai::findOrFail($id);
         $pegawai->id_jabatan = $request->id_jabatan;
         $pegawai->nik = $request->nik;
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar');
+            $name = rand(1000, 999)."".$request->gambar->getClientOriginalName();
+            $image->move('images/', $name);
+            $pegawai->gambar = $name;
+        }
         $pegawai->nama = $request->nama;
         $pegawai->alamat = $request->alamat;
         $pegawai->tgl_lahir = $request->tgl_lahir;

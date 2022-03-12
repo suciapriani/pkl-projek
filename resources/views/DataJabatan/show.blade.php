@@ -27,11 +27,11 @@ Dashboard
                             </div>
                             <div class="form-group">
                                 <label for="">Gaji Pokok</label>
-                                <input type="text" name="gaji_pokok" value="{{ $jabatan->gaji_pokok }}" class="form-control" readonly>
+                                <input type="text" name="gaji_pokok" value=" Rp.{{ number_format($jabatan->gaji_pokok) }}" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="">Tunjangan Jabatan</label>
-                                <input type="text" name="tunjangan_jabatan" value="{{ $jabatan->tunjangan_jabatan }}" class="form-control" readonly>
+                                <input type="text" name="tunjangan_jabatan" value="Rp.{{number_format( $jabatan->tunjangan_jabatan) }}" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <br>

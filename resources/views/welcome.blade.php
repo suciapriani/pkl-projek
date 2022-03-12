@@ -1,5 +1,6 @@
 <h1 style="background-color: #2F4F4F;"><center><font color=white>Penggajian Karyawan</color></h1>
 
+
 <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
@@ -7,9 +8,9 @@
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Login
-                        </a>
-
+					<button onclick = "{{ route('login') }}" class = "btn btn-primary"><i>
+						<a href="{{ route('login') }}" class="nav-link btn btn-primary"> <h1 style="background-color: #3596ba;">LOGIN</i></button></a>
+						
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
                         @endif
@@ -20,7 +21,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<br>
+
 <!-- <center><font color=blue>Panda MZ</color></center> -->
 <br>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -407,20 +408,18 @@ footer{
 <footer class="footer-distributed">
 
 			<div class="footer-left">
-          <img src="https://www.blogger.com/img/blogger-logotype-color-black-1x.png">
+          {{-- <img src="https://www.blogger.com/img/blogger-logotype-color-black-1x.png"> --}}
 				<h3>Penggajian<span>Karyawan</span></h3>
 
 				<p class="footer-links">
 					<a href="#">Home</a>
-					|
-					<a href="#">Blog</a>
 					|
 					<a href="#">Penggajian</a>
 					|
 					<a href="#">Contact</a>
 				</p>
 
-				<p class="footer-company-name">© 2021 PushTheme Learning Solutions Pvt. Ltd.</p>
+				<p class="footer-company-name">© 2022 SMK ASSALAAM BANDUNG.</p>
 			</div>
 
 			<div class="footer-center">
@@ -428,16 +427,18 @@ footer{
 					<i class="fa fa-map-marker"></i>
 					  <p><span>309 - Rupa Solitaire,
 						 Bldg. No. A - 1, Sector - 1</span>
-						Mahape, Navi Mumbai - 400710</p>
+						 <br>
+						Dayeuhkolot,Kab.Bandung - 40239</p>
 				</div>
+				<br>
 
 				<div>
 					<i class="fa fa-phone"></i>
-					<p>+91 22-27782183</p>
+					<p>+62 89514163981</p>
 				</div>
 				<div>
 					<i class="fa fa-envelope"></i>
-					<p><a href="https://www.samuelpasaribu.com">support@samuelpasaribu.com</a></p>
+					<p><a href="https://www.samuelpasaribu.com">support@SuciApriani.com</a></p>
 				</div>
 			</div>
 			<div class="footer-right">

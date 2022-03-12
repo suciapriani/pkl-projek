@@ -18,6 +18,7 @@ class CreatePegawaisTable extends Migration
             $table->bigInteger('id_jabatan')->unsigned();
             $table->foreign('id_jabatan')->references('id')->on('jabatans');
             $table->bigInteger('nik');
+            $table->string('gambar')->nullable;
             $table->string('nama');
             $table->string('alamat');
             $table->string('tgl_lahir');

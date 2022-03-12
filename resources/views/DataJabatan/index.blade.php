@@ -20,7 +20,7 @@ Dashboard
             <div class="table-responsive">
                 <table class="table" id="example">
                     <thead>
-                                <tr>
+                              <tr>
                                     <th>No</th>
                                     <th>Jabatan</th>
                                     <th>Golongan</th> 
@@ -36,18 +36,21 @@ Dashboard
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->jabatan }}</td>
                                         <td>{{ $data->golongan }}</td>
-                                        <td>Rp.{{ $data->gaji_pokok }}</td>
-                                        <td>Rp.{{ $data->tunjangan_jabatan }}</td>
-                    
+                                        <td><span>
+                                        Rp.{{number_format($data->gaji_pokok,2,",",".")}}
+                                        </span></td>
+                                        <td><span>
+                                        Rp.{{number_format($data->tunjangan_jabatan ,2,",",".")}}
+                                        </span></td>
                                         <td>
                                         <form action="{{ route('DataJabatan.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
                                                 <a href="{{ route('DataJabatan.edit', $data->id) }}"
-                                                    class="btn btn-outline-info">Edit</a>
+                                                    class="btn btn-outline btn-sm btn btn-warning">Edit</a>
                                                 <a href="{{ route('DataJabatan.show', $data->id) }}"
-                                                    class="btn btn-outline-warning">Show</a>
-                                                <button type="submit" class="btn btn-outline-danger"
+                                                    class="btn btn-outline btn-sm btn btn-info">Show</a>
+                                                <button type="submit" class="btn btn-outline btn-sm btn btn-danger"
                                                     onclick="return confirm('Are you sure?');">Delete</button>
                                             </form>
                                         </td>

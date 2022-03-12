@@ -12,7 +12,7 @@ Dashboard
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
-           Penggajian
+           Data Penggajian
             <a href="{{ route('Penggajian.create')}}" class="btn btn-primary float-right">Tambah</a>
         </div>
         <!-- /.card-heading -->
@@ -33,27 +33,37 @@ Dashboard
                                     <th>Action</th>
                                 </tr>
                                 </thead>
-                                 <tbody>
+                                <tbody>
                                 @php $no=1; @endphp
                                 @foreach ($penggajian as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->pegawais->nama }}</td>
-                                        <td>{{ $data->jabatans->jabatan }}</td>
-                                        <td>{{ $data->jabatans->golongan }}</td>
-                                        <td>Rp.{{ $data->lemburs->jumlah }}</td>
-                                        <td>Rp.{{ $data->cutis->jumlah }}</td>
-                                        <td>Rp.{{ $data->jabatans->gaji_pokok }}</td>
-                                        <td>Rp.{{ $data->jabatans->tunjangan_jabatan}}</td>
-                                        <td>Rp.{{ $data->total }}</td>
+                                        <td>{{ $data->pegawais->jabatans->jabatan }}</td>
+                                        <td>{{ $data->pegawais->jabatans->golongan }}</td>
+                                        <td><span>
+                                        Rp.{{number_format($data->pegawais->lemburs->sum('jumlah'),2,",",".")}}
+                                        </span></td>
+                                        <td><span>
+                                            Rp.{{number_format($data->pegawais->cutis->sum('jumlah'),2,",",".")}}
+                                        </span></td>
+                                        <td><span>
+                                            Rp.{{number_format($data->pegawais->jabatans->gaji_pokok,2,",",".")}}
+                                        </span></td>
+                                        <td><span>
+                                            Rp.{{number_format($data->pegawais->jabatans->tunjangan_jabatan,2,",",".")}}
+                                        </span></td>
+                                        <td><span>
+                                            Rp.{{number_format($data->total,2,",",".")}}
+                                        </span></td>
                                         <td>
                                         <form action="{{ route('Penggajian.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
                                                
                                                 <a href="{{ route('Penggajian.show', $data->id) }}"
-                                                    class="btn btn-outline-warning">Show</a>
-                                                <button type="submit" class="btn btn-outline-danger"
+                                                    class="btn btn-outline btn-sm btn btn-info">Show</a>
+                                                    <button type="submit" class="btn btn-outline btn-sm btn btn-danger"
                                                     onclick="return confirm('Are you sure?');">Delete</button>
                                             </form>
                                         </td>

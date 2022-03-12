@@ -27,31 +27,17 @@ Dashboard
                         <form action="{{ route('Cuti.update', $cuti->id) }}" method="post" accept="">
                             @csrf
                             @method('put')
-                           
-                            <div class="form-group">
+                            <div class="panel-body">
                                 <label for="">karyawan</label>
-                                <input type="text" name="id_kar" value="{{ $cuti->id_kar }}"
-                                    class="form-control @error('id_kar') is-invalid @enderror">
-                                @error('id_kar')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            
+                                <select name="id_kar" class="form-control">
+                                 @foreach($pegawai as $data)
+                                 <option value="{{$data->id}}">{{$data->nama}}</option>
+                                 @endforeach
+                                 </select>
+                           </div>
+                            <br>
                             <div class="form-group">
-                                <label for="">Nik</label>
-                                <input type="text" name="nik" value="{{ $cuti->nik }}"
-                                    class="form-control @error('nik') is-invalid @enderror">
-                                @error('nik')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="">Tanggal Lembur</label>
+                                <label for="">Tanggal Cuti</label>
                                 <input type="date" name="tgl_cuti" value="{{ $cuti->tgl_cuti }}"
                                     class="form-control @error('tgl_cuti') is-invalid @enderror">
                                 @error('tgl_cuti')
@@ -60,9 +46,8 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                           
                             <div class="form-group">
-                                <label for="">Jumlah</label>
+                                <label for="">Nominal Uang</label>
                                 <input type="text" name="jumlah" value="{{ $cuti->jumlah }}"
                                     class="form-control @error('jumlah') is-invalid @enderror">
                                 @error('jumlah')
@@ -71,7 +56,6 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                          
                             <div class="form-group">
                                 <button type="reset" class="btn btn-outline-warning">Reset</button>
                                 <button type="submit" class="btn btn-outline-primary">Save</button>

@@ -30,8 +30,8 @@ Dashboard
                                 <input type="date" name="tgl_lembur" value="{{ $lembur->tgl_lembur }}" class="form-control" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">jumlah</label>
-                                <input type="text" name="jumlah" value="{{ $lembur->jumlah }}" class="form-control" readonly>
+                                <label for="">Nominal Uang</label>
+                                <input type="text" name="jumlah" value="Rp.{{ number_format($lembur->jumlah) }}" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <br>

@@ -22,14 +22,15 @@ Dashboard
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>jabatan</th>
-                                    <th>Nik</th>
+                                    <th>Poto</th>
+                                    <th>Jabatan</th>
+                                    <th>Golongan</th>
                                     <th>Nama</th>
+                                    <th>Nik</th>
                                     <th>Alamat</th>
                                     <th>Tanggal Lahir</th>
                                     <th>Jenis Kelamin</th>
                                     <th>No Telepone</th>                                  
-                                    <th>Golongan</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -38,23 +39,25 @@ Dashboard
                                 @foreach ($pegawai as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
+                                        <td><img src="{{ $data->image() }}" alt="" style="width:150px; height:150px;"
+                                            alt="gambar"></td>
                                         <td>{{ $data->jabatans->jabatan }}</td>
-                                        <td>{{ $data->nik }}</td>
+                                        <td>{{ $data->golongan}}</td>
                                         <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->nik }}</td>
                                         <td>{{ $data->alamat }}</td>
                                         <td>{{ $data->tgl_lahir }}</td>
                                         <td>{{ $data->jenis_kelamin }}</td>
                                         <td>{{ $data->no_telp }}</td>                                  
-                                        <td>{{ $data->golongan}}</td>
                                         <td>
                                         <form action="{{ route('Pegawai.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
                                                 <a href="{{ route('Pegawai.edit', $data->id) }}"
-                                                    class="btn btn-outline-info">Edit</a>
+                                                    class="btn btn-outline btn-sm btn btn-warning">Edit</a>
                                                 <a href="{{ route('Pegawai.show', $data->id) }}"
-                                                    class="btn btn-outline-warning">Show</a>
-                                                <button type="submit" class="btn btn-outline-danger"
+                                                    class="btn btn-outline btn-sm btn btn-info">Show</a>
+                                                <button type="submit" class="btn btn-outline btn-sm btn btn-danger"
                                                     onclick="return confirm('Are you sure?');">Delete</button>
                                             </form>
                                         </td>

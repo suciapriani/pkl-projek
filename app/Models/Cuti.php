@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Cuti extends Model
 {
     use HasFactory;
-    protected $visible = ['id_kar','nik','tgl_cuti', 'jumlah'];
-    protected $fillable = ['id_kar','nik','tgl_cuti', 'jumlah'];
+    protected $visible = ['id_kar','tgl_cuti', 'jumlah'];
+    protected $fillable = ['id_kar','tgl_cuti', 'jumlah'];
     public $timestamps = true;
 
     
@@ -19,8 +19,9 @@ class Cuti extends Model
         // melalui fk "author_id"
         return $this->belongsTo('App\Models\pegawai', 'id_kar');
     }
-    public function penggajians()
-    {
-        return $this->hasMany('App\Models\lembur', 'id_lembur');
-    }
+
+    // public function penggajians()
+    // {
+    //     return $this->hasMany('App\Models\lembur', 'id_lembur');
+    // }
 }

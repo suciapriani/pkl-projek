@@ -17,7 +17,6 @@ class CreateLembursTable extends Migration
             $table->id();
             $table->bigInteger('id_karyawan')->unsigned();
             $table->foreign('id_karyawan')->references('id')->on('pegawais');
-            $table->integer('nik');
             $table->date('tgl_lembur')->nullable();
             $table->string('jumlah');
             $table->timestamps();

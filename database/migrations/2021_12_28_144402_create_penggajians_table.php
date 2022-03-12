@@ -17,13 +17,8 @@ class CreatePenggajiansTable extends Migration
             $table->id();
             $table->bigInteger('id_pegawai')->unsigned();
             $table->foreign('id_pegawai')->references('id')->on('pegawais');
-            $table->bigInteger('id_jabatan')->unsigned();
-            $table->foreign('id_jabatan')->references('id')->on('jabatans');
-            $table->bigInteger('id_lembur')->unsigned();
-            $table->foreign('id_lembur')->references('id')->on('lemburs');
-            $table->bigInteger('id_cuti')->unsigned();
-            $table->foreign('id_cuti')->references('id')->on('cutis');
-            $table->string('total');
+            $table->date('tgl_gajian');
+            $table->integer('total');
             $table->timestamps();
         });
     }

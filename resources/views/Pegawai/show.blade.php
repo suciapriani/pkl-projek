@@ -7,52 +7,61 @@
 Dashboard
 
 
+
+
 @endsection
 
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col">
+           <div class="col-lg-10">
                 <div class="card">
-                    <div class="card-header">Data Pegawai</div>
+                    <div class="card-header"><h3>Profile Karyawan</div>
                     <div class="card-body">
-                            <div class="form-group">
-                                <label for="">Jabatan</label>
-                                <input type="text" name="jabatan" value="{{ $pegawai->jabatans->jabatan }}" class="form-control" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Nik</label>
-                                <input type="text" name="nik" value="{{ $pegawai->nik }}" class="form-control" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Nama</label>
-                                <input type="text" name="nama" value="{{ $pegawai->nama }}" class="form-control" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Alamat</label>
-                                <input type="text" name="alamat" value="{{ $pegawai->alamat }}" class="form-control" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Tgl Lahir</label>
-                                <input type="date" name="tgl_lahir" value="{{ $pegawai->tgl_lahir }}" class="form-control" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Jenis Kelamin</label>
-                                <input type="text" name="jenis_kelamin" value="{{ $pegawai->jenis_kelamin }}" class="form-control" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="">No Telepon</label>
-                                <input type="text" name="no_telp" value="{{ $pegawai->no_telp }}" class="form-control" readonly>
-                            </div>  
-                            <div class="form-group">
-                                <label for="">Golongan</label>
-                                <input type="text" name="golongan" value="{{ $pegawai->golongan }}" class="form-control" readonly>
-                            </div>
-                            <div class="form-group">
-                                <br>
-                                <a href="{{ url('admin/Pegawai') }}" class="btn btn-block btn-outline-primary">Kembali</a>
-                        </div>
-                    </div>
+                    <html>
+                    <body>
+                    <table width="745" border="1" cellspacing="0" cellpadding="5" align="center">
+                    <tr align="center" bgcolor="#6495ED">
+                    <td width="174"><b>DATA DIRI</td>
+                    <td width="353"><b>KETERANGAN</td>
+                    <td width="232"><b>FOTO</td>
+                    </tr>
+                    <tr>
+                    <td>Nama</td>
+                    <td>{{ $pegawai->nama }}</td>
+                    <td rowspan="10" align="center"><img src="{{ $pegawai->image() }}" alt="gambar" style="width:210px; height:313px;" alt="gambar"></td>
+
+                    </tr>
+                    <tr>
+                    <td>Jabatan</td>
+                    <td>{{ $pegawai->jabatans->jabatan }}</td>
+                    </tr>
+                    <tr>
+                    <td>NIK</td>
+                    <td>{{ $pegawai->nik }}</td>
+                    </tr>
+                    <tr>
+                    <td>Alamat</td>
+                    <td>{{ $pegawai->alamat }}</td>
+                    </tr>
+                    <tr>
+                    <td>Tanggal Lahir</td>
+                    <td>{{ $pegawai->tgl_lahir }}</td>
+                    </tr>
+                    <tr>
+                    <td>Jenis Kelamin</td>
+                    <td>{{ $pegawai->jenis_kelamin }}</td>
+                    </tr>
+                    <tr>
+                    <td>No Telepone</td>
+                    <td>{{ $pegawai->no_telp }}</td>
+                    </tr>
+                    <tr>
+                    <td>Golongan</td>
+                    <td>{{ $pegawai->golongan }}</td>
+                    </tr>
+                    </table>
+                    </body>   
                 </div>
             </div>
         </div>

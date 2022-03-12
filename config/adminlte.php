@@ -276,21 +276,27 @@ return [
             'can' => 'AksesAdmin',
             'submenu' => [
                 [
-                    'text' => 'Data Pegawai',
-                    'icon'    => 'far fa-id-card',
-                    'url'  => 'admin/Pegawai',
-                    'can' => 'AksesAdmin',
-                ],
-                [
                     'text'    => 'Data Jabatan',
                     'icon'    => 'far fa-id-card',
                     'url'     => 'admin/DataJabatan',
                     'can' => 'AksesAdmin'
                 ],
+                [
+                    'text' => 'Data Pegawai',
+                    'icon'    => 'far fa-id-card',
+                    'url'  => 'admin/Pegawai',
+                    'can' => 'AksesAdmin',
+                ],
+               
             ],
         ],
         
-                
+        [
+            'text'       => 'Absen',
+            'icon'       => 'far fa-chart-bar',
+            'url'        => 'admin/Absen',
+            'can' => 'AksesAdmin'
+        ],    
         [
             'text'       => 'Lembur',
             'icon'       => 'far fa-chart-bar',
@@ -310,13 +316,13 @@ return [
             'can' => 'AksesAdmin',
 
         ],
+       
         [
             'text'    => 'Laporan Gaji',
             'icon'    => 'far fa-file-alt',
             'can' => ['AksesAdmin','AksesPengguna'],
-            'url'     => 'admin/laporan',
+            'url'     => 'admin/cetak-laporan',
         ],
-       
     ],
         
     

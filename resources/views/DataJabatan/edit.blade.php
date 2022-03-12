@@ -22,7 +22,7 @@ Dashboard
                                 <li>{{$error}}</li>
                                 @endforeach
                             </ul>
-                                @endif
+                        @endif
                         <form action="{{ route('DataJabatan.update', $jabatan->id) }}" method="post" accept="">
                             @csrf
                             @method('put')

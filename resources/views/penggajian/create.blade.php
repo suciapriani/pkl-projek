@@ -20,47 +20,27 @@ Dashboard
                             @csrf
 
                             <div class="panel-body">
-                                 <label>Nama Pegawai</label>
-                                 <select name="id_pegawai" class="form-control">
-                                  @foreach($pegawai as $data)
-                                  <option value="{{$data->id}}">{{$data->nama}}</option>
-                                  @endforeach
-                                  </select>
+                                <label>Nama Pegawai</label>
+                                <select name="id_pegawai" class="form-control @error('id_pegawai') is-invalid @enderror">
+                                    @foreach($pegawai as $data)
+                                        <option value="{{$data->id}}">{{$data->nama}}</option>
+                                    @endforeach
+                                </select>
+                                @error('id_pegawai')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>  
-                            <div class="panel-body">
-                                            <label>id_jabatan</label>
-                                            <select name="id_jabatan" class="form-control">
-                                                @foreach($jabatan as $data)
-                                                <option value="{{$data->id}}">{{$data->jabatan}}</option>
-                                                @endforeach
-                                            </select>
-                            </div>  
-                            <div class="panel-body">
-                                            <label>lemburan</label>
-                                            <select name="id_lembur" class="form-control">
-                                                @foreach($lembur as $data)
-                                                <option value="{{$data->id}}">{{$data->jumlah}}</option>
-                                                @endforeach
-                                            </select>
-                            </div>    
-                            <div class="panel-body">
-                                            <label>cuti</label>
-                                            <select name="id_cuti" class="form-control">
-                                                @foreach($cuti as $data)
-                                                <option value="{{$data->id}}">{{$data->jumlah}}</option>
-                                                @endforeach
-                                            </select>
-                            </div>                                  
-                            <!-- <div class="form-group">
-                                <label for="">total</label>
-                                <input type="text" name="total"
-                                    class="form-control @error('total') is-invalid @enderror">
-                                @error('total')
+                            <div class="form-group">
+                                <label for="">Tanggal Gajian </label>
+                                <input type="date" name="tgl_gajian" class="form-control @error('tgl_gajian') is-invalid @enderror">
+                                @error('tgl_gajian')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>  --> 
+                            </div>
                             <div class="form-group">
                                 <button type="reset" class="btn btn-outline-warning">Reset</button>
                                 <button type="submit" class="btn btn-outline-primary">Save</button>
