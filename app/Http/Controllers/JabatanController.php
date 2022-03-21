@@ -47,7 +47,6 @@ class JabatanController extends Controller
         $jabatan = new Jabatan;
         //db              create
         $jabatan->jabatan = $request->jabatan;
-        $jabatan->golongan = $request->golongan;
         $jabatan->gaji_pokok = $request->gaji_pokok;
         $jabatan->tunjangan_jabatan = $request->tunjangan_jabatan;
         $jabatan->save();
@@ -89,7 +88,6 @@ class JabatanController extends Controller
     {
         $request->validate([
             'jabatan' => 'required',
-            'golongan' => 'required',
             'gaji_pokok' => 'required',
             'tunjangan_jabatan' => 'required',
 
@@ -97,7 +95,6 @@ class JabatanController extends Controller
 
         $jabatan = Jabatan::findOrFail($id);
         $jabatan->jabatan = $request->jabatan;
-        $jabatan->golongan = $request->golongan;
         $jabatan->gaji_pokok = $request->gaji_pokok;
         $jabatan->tunjangan_jabatan = $request->tunjangan_jabatan;
         $jabatan->save();

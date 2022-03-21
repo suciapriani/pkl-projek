@@ -27,17 +27,6 @@ Dashboard
                                     </span>
                                 @enderror
                             </div>
-                          
-                            <div class="form-group">
-                                <label for="">Golongan</label>
-                                <input type="text" name="golongan"
-                                    class="form-control @error('golongan') is-invalid @enderror">
-                                @error('golongan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
                             <div class="form-group">
                                 <label for=""> Gaji pokok </label>
                                 <input type="text" name="gaji_pokok" class="form-control @error('gaji_pokok') is-invalid @enderror">

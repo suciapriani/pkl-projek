@@ -24,7 +24,6 @@ Dashboard
                                     <th>No</th>
                                     <th>Poto</th>
                                     <th>Jabatan</th>
-                                    <th>Golongan</th>
                                     <th>Nama</th>
                                     <th>Nik</th>
                                     <th>Alamat</th>
@@ -42,7 +41,6 @@ Dashboard
                                         <td><img src="{{ $data->image() }}" alt="" style="width:150px; height:150px;"
                                             alt="gambar"></td>
                                         <td>{{ $data->jabatans->jabatan }}</td>
-                                        <td>{{ $data->golongan}}</td>
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->nik }}</td>
                                         <td>{{ $data->alamat }}</td>

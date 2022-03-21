@@ -39,17 +39,6 @@ Dashboard
                             </div>
                             <br>
                              <div class="panel-body">
-                                <label for="">golongan</label>
-                                <input type="text" name="golongan" value="{{ $jabatan->golongan }}"
-                                    class="form-control @error('golongan') is-invalid @enderror">
-                                @error('golongan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <br>
-                             <div class="panel-body">
                                 <label for="">gaji pokok</label>
                                 <input type="text" name="gaji_pokok" value="{{ $jabatan->gaji_pokok }}"
                                     class="form-control @error('gaji_pokok') is-invalid @enderror">

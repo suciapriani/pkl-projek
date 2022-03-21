@@ -22,14 +22,14 @@ Dashboard
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Pegawai</th>
+                                    <th>Nama </th>
                                     <th>Jabatan</th>
-                                    <th>golongan</th>
+                                    <th>Gaji Pokok</th>
+                                    <th>Tunjangan</th>
                                     <th>Lemburan</th>
-                                    <th>potongan</th>
-                                    <th>gaji pokok</th>
-                                    <th>tunjangan</th>
-                                    <th>total</th>
+                                    <th>Potongan Cuti</th>
+                                    {{-- <th>keterangan Kerja</th> --}}
+                                    <th>Total</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -40,19 +40,21 @@ Dashboard
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->pegawais->nama }}</td>
                                         <td>{{ $data->pegawais->jabatans->jabatan }}</td>
-                                        <td>{{ $data->pegawais->jabatans->golongan }}</td>
-                                        <td><span>
-                                        Rp.{{number_format($data->pegawais->lemburs->sum('jumlah'),2,",",".")}}
-                                        </span></td>
-                                        <td><span>
-                                            Rp.{{number_format($data->pegawais->cutis->sum('jumlah'),2,",",".")}}
-                                        </span></td>
                                         <td><span>
                                             Rp.{{number_format($data->pegawais->jabatans->gaji_pokok,2,",",".")}}
                                         </span></td>
                                         <td><span>
                                             Rp.{{number_format($data->pegawais->jabatans->tunjangan_jabatan,2,",",".")}}
                                         </span></td>
+                                        <td><span>
+                                        Rp.{{number_format($data->pegawais->lemburs->sum('jumlah'),2,",",".")}}
+                                        </span></td>
+                                        <td><span>
+                                            Rp.{{number_format($data->pegawais->cutis->sum('jumlah'),2,",",".")}}
+                                        </span></td>
+
+                                        {{-- <td>{{ $data->pegawai->absensi->keterangan}}</td> --}}
+
                                         <td><span>
                                             Rp.{{number_format($data->total,2,",",".")}}
                                         </span></td>

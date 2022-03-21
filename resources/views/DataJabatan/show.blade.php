@@ -20,11 +20,6 @@ Dashboard
                                 <label for="">Jabatan</label>
                                 <input type="text" name="jabatan" value="{{ $jabatan->jabatan }}" class="form-control" readonly>
                             </div>
-                    <div class="form-group">
-                                <label for="">Golongan</label>
-                                <br>
-                                <input type="text" name="golongan" value="{{ $jabatan->golongan }}" class="form-control" readonly>
-                            </div>
                             <div class="form-group">
                                 <label for="">Gaji Pokok</label>
                                 <input type="text" name="gaji_pokok" value=" Rp.{{ number_format($jabatan->gaji_pokok) }}" class="form-control" readonly>

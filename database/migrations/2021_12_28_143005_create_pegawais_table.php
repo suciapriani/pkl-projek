@@ -24,7 +24,6 @@ class CreatePegawaisTable extends Migration
             $table->string('tgl_lahir');
             $table->string('jenis_kelamin');
             $table->string('no_telp');
-            $table->string('golongan');
             $table->timestamps();
         });
     }

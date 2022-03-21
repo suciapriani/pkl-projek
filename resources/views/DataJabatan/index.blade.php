@@ -23,7 +23,6 @@ Dashboard
                               <tr>
                                     <th>No</th>
                                     <th>Jabatan</th>
-                                    <th>Golongan</th> 
                                     <th>Gaji Pokok</th>
                                     <th>Tunjangan Jabatan</th>
                                     <th>Action</th>
@@ -35,7 +34,6 @@ Dashboard
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->jabatan }}</td>
-                                        <td>{{ $data->golongan }}</td>
                                         <td><span>
                                         Rp.{{number_format($data->gaji_pokok,2,",",".")}}
                                         </span></td>

@@ -19,7 +19,7 @@ Dashboard
                             @csrf
                             @method('put')
                             <div class="panel-body">
-                                 <label for="">id_jabatan</label>
+                                 <label for="">Jabatan</label>
                                  <select name="id_jabatan" class="form-control">
                                   @foreach($jabatan as $data)
                                   <option value="{{$data->id}}">{{$data->id}} - {{$data->jabatan}}</option>
@@ -95,15 +95,6 @@ Dashboard
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                            <div class="panel-body">
-                                 <label for="">golongan</label>
-                                 <select name="golongan" class="form-control">
-                                  @foreach($jabatan as $data)
-                                  <option value="{{$data->golongan}}">{{$data->golongan}}</option>
-                                  @endforeach
-                                  </select>
-                            </div>
                             </div>
                             <div class="form-group">
                                 <button type="reset" class="btn btn-outline-warning">Reset</button>

@@ -6,9 +6,6 @@
 
 Dashboard
 
-
-
-
 @endsection
 
 @section('content')
@@ -16,7 +13,7 @@ Dashboard
         <div class="row">
            <div class="col-lg-10">
                 <div class="card">
-                    <div class="card-header"><h3>Profile Karyawan</div>
+                    <div class="card-header">Profile Karyawan</div>
                     <div class="card-body">
                     <html>
                     <body>
@@ -56,10 +53,7 @@ Dashboard
                     <td>No Telepone</td>
                     <td>{{ $pegawai->no_telp }}</td>
                     </tr>
-                    <tr>
-                    <td>Golongan</td>
-                    <td>{{ $pegawai->golongan }}</td>
-                    </tr>
+                   
                     </table>
                     </body>   
                 </div>

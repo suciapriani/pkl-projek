@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Absensi;
 use App\Models\Pegawai;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -27,7 +28,13 @@ class AbsenController extends Controller
      */
     public function create()
     {
-        $pegawai = Pegawai::all();
+        // $pegawai = Pegawai::whereHas(['absens' => function ($q) {
+        //     // $q->where('tgl_absen', '=', Carbon::today()->format('Y-m-d'));
+        // }])->get();
+        $pegawai = Pegawai::wheredoesntHave('absens', function($q){
+            $q->where('tgl_absen', '=', Carbon::today()->format('Y-m-d'));
+        })->get();
+        // return $pegawai;
         return view('Absen.create', compact('pegawai'));
     }
 
@@ -40,9 +47,9 @@ class AbsenController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tgl_absen' => 'required',
+            'tgl_absen' => 'required|date|after:yesterday|before:tomorrow',
             'keterangan' => 'required',
-           
+
         ]);
         $absen = new Absensi;
         $absen->id_karyawan = $request->id_karyawan;
@@ -74,7 +81,7 @@ class AbsenController extends Controller
     {
         $pegawai = Pegawai::all();
         $absen = Absensi::findOrFail($id);
-        return view('Absen.edit', compact('absen','pegawai')); 
+        return view('Absen.edit', compact('absen', 'pegawai'));
     }
 
     /**
@@ -89,9 +96,9 @@ class AbsenController extends Controller
         $request->validate([
             'tgl_absen' => 'required',
             'keterangan' => 'required',
-           
+
         ]);
-        $absen = new Absensi;
+        $absen = Absensi::findOrFail($id);
         $absen->id_karyawan = $request->id_karyawan;
         $absen->tgl_absen = $request->tgl_absen;
         $absen->keterangan = $request->keterangan;

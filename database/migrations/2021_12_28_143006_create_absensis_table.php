@@ -21,7 +21,7 @@ class CreateAbsensisTable extends Migration
             $table->string('keterangan');
             $table->timestamps();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.

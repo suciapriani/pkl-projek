@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Pegawai extends Model
 {
     use HasFactory;
-    protected $visible = ['id_jabatan','nik','gambar', 'nama', 'alamat','tgl_lahir','jenis_kelamin','no_telp','golongan'];
-    protected $fillable = ['id_jabatan','nik','gambar', 'nama', 'alamat','tgl_lahir','jenis_kelamin','no_telp','golongan'];
-    public $timestamps = true;
+    // protected $visible = ['id_jabatan','nik','gambar', 'nama', 'alamat','tgl_lahir','jenis_kelamin','no_telp'];
+    // protected $fillable = ['id_jabatan','nik','gambar', 'nama', 'alamat','tgl_lahir','jenis_kelamin','no_telp'];
+    // public $timestamps = true;
 
     public function image()
     {
@@ -37,7 +37,7 @@ class Pegawai extends Model
 
     public function absens()
     {
-        return $this->hasMany('App\Models\absen', 'id_karyawan');
+        return $this->hasMany('App\Models\Absensi', 'id_karyawan');
     }
     
     public function lemburs()

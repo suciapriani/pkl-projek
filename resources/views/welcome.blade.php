@@ -1,15 +1,16 @@
-<h1 style="background-color: #2F4F4F;"><center><font color=white>Penggajian Karyawan</color></h1>
-
+<h1 style="background-color: #2F4F4F;"><center><font color=white>Penggajian Karyawan</h1>
 
 <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                     <h2>   <a href="{{ url('/home') }}" style="background-color: #2F4F4F;"><font color=white>Home</a></h2>
                     @else
-					<button onclick = "{{ route('login') }}" class = "btn btn-primary"><i>
-						<a href="{{ route('login') }}" class="nav-link btn btn-primary"> <h1 style="background-color: #3596ba;">LOGIN</i></button></a>
+					<h2>	<a href="{{ route('login') }}" style="background-color: #2F4F4F;"><font color=white>Log in</a></h2>
+					
+					{{-- <button onclick = "{{ route('login') }}" class = "btn btn-primary"><i>
+						<a href="{{ route('login') }}" class="nav-link btn btn-primary"> <h1 style="background-color: #3596ba;">LOGIN</i></button></a> --}}
 						
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>

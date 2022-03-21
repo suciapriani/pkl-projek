@@ -245,14 +245,14 @@ return [
         ['header' => 'ACCOUNT SETTINGS'],
 
         [
-            'text' => 'dashboard',
+            'text' => 'Dashboard',
             'url'  => 'admin/dashboard',
             'icon' => 'fas fa-fw fa-home',
             'can' => 'AksesAdmin'
         ],
 
         [
-            'text' => 'dashboard',
+            'text' => 'Dashboard',
             'url'  => 'admin/dashboardUser',
             'icon' => 'fas fa-fw fa-home',
             'can' => 'AksesPengguna'
@@ -264,8 +264,8 @@ return [
         //     'url'  => 'home',
         // ],
         [
-            'text'    => 'Profile',
-            'icon'    => 'far fa-file-alt',
+            'text'    => 'Data Karyawan',
+            'icon'    => 'far fa-id-card',
             'can' => 'AksesPengguna',
             'url'     => 'admin/profile',
             
@@ -316,11 +316,16 @@ return [
             'can' => 'AksesAdmin',
 
         ],
-       
+        [
+            'text'    => 'Penggajian',
+            'icon'    => 'fas fa-money-check-alt',
+            'can' => 'AksesPengguna',
+            'url'     => 'admin/laporan',
+        ],
         [
             'text'    => 'Laporan Gaji',
             'icon'    => 'far fa-file-alt',
-            'can' => ['AksesAdmin','AksesPengguna'],
+            'can' => 'AksesAdmin',
             'url'     => 'admin/cetak-laporan',
         ],
     ],

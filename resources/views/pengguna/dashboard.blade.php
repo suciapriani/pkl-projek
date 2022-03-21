@@ -14,7 +14,7 @@ Beranda
 
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3">
-                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-sign-in-alt"></i></span>
+                    <span class="info-box-icon bg-warning elevation-1"><i class="far fa-id-badge"></i></span>
 
                     <div class="info-box-content">
                         <span class="info-box-text">Jumlah pegawai</span>
@@ -30,7 +30,7 @@ Beranda
             </div>
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
-                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-list-ul"></i></span>
+                    <span class="info-box-icon bg-info elevation-1"><i class="	fas fa-donate"></i></span>
 
                     <div class="info-box-content">
                         <span class="info-box-text">Jumlah penggajian</span>

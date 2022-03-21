@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use App\Models\Penggajian;
 use App\Models\Pegawai;
 use App\Models\Lembur;
@@ -9,7 +10,7 @@ use App\Models\Cuti;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
-
+use DB;
 class PenggajianController extends Controller
 {
     /**
@@ -69,8 +70,17 @@ class PenggajianController extends Controller
         $penggajian->tgl_gajian = $request->tgl_gajian;
 
         $pegawai = Pegawai::findOrFail($request->id_pegawai);
+        $izin = Absensi::where('id_karyawan', $pegawai->id)->where('keterangan', 'izin')->whereBetween('tgl_absen', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->count();
+        $pot_izin = 80000 * $izin;
 
-        $penggajian->total = $pegawai->jabatans['gaji_pokok'] + $lembur - $cuti + $pegawai->jabatans['tunjangan_jabatan'];
+        $alpa = Absensi::where('id_karyawan', $pegawai->id)->where('keterangan', 'alpa')->whereBetween('tgl_absen', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->count();
+        $pot_alpa = 100000 * $alpa;
+
+        $sakit = Absensi::where('id_karyawan', $pegawai->id)->where('keterangan', 'sakit')->whereBetween('tgl_absen', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->count();
+        $pot_sakit = 70000 * $sakit;
+
+
+        $penggajian->total = ($pegawai->jabatans['gaji_pokok'] + $lembur - $cuti + $pegawai->jabatans['tunjangan_jabatan']) - ($pot_izin + $pot_alpa + $pot_sakit);
         $penggajian->save();
         return redirect()->route('Penggajian.index');
     }
@@ -85,7 +95,40 @@ class PenggajianController extends Controller
     public function show($id)
     {
         $penggajian = Penggajian::findOrFail($id);
-        return view('Penggajian.show', compact('penggajian'));
+        $sakit = DB::table('penggajians')
+                ->where('penggajians.id', $id)
+                ->select("absensis.keterangan")
+                ->join('pegawais', 'penggajians.id_pegawai', '=', 'pegawais.id')
+                ->join('absensis', 'absensis.id_karyawan', '=', 'pegawais.id')
+                ->where('absensis.keterangan', '=', 'Sakit')
+                ->count();
+        $hadir = DB::table('penggajians')
+                ->where('penggajians.id', $id)
+                ->select("absensis.keterangan")
+                ->join('pegawais', 'penggajians.id_pegawai', '=', 'pegawais.id')
+                ->join('absensis', 'absensis.id_karyawan', '=', 'pegawais.id')
+                ->where('absensis.keterangan', '=', 'Hadir')
+                ->count();
+        $izin = DB::table('penggajians')
+               ->where('penggajians.id', $id)
+                ->select("absensis.keterangan")
+                ->join('pegawais', 'penggajians.id_pegawai', '=', 'pegawais.id')
+                ->join('absensis', 'absensis.id_karyawan', '=', 'pegawais.id')
+                ->where('absensis.keterangan', '=', 'Izin')
+                ->count();
+        $alfa = DB::table('penggajians')
+                ->where('penggajians.id', $id)
+                ->select("absensis.keterangan")
+                ->join('pegawais', 'penggajians.id_pegawai', '=', 'pegawais.id')
+                ->join('absensis', 'absensis.id_karyawan', '=', 'pegawais.id')
+                ->where('absensis.keterangan', '=', 'Alfa')
+                ->count();
+
+        $potSakit = $sakit * 70000;
+        $potIzin = $izin * 80000;
+        $potAlfa = $alfa * 100000;
+        // dd($sakit);
+        return view('Penggajian.show', compact('penggajian','hadir','potIzin','potSakit','potAlfa'));
     }
 
     /**

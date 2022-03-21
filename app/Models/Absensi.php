@@ -9,9 +9,9 @@ class Absensi extends Model
 {
 
     use HasFactory;
-    protected $visible = ['id_karyawan','tgl_absen', 'keterangan'];
-    protected $fillable = ['id_karyawan','tgl_absen', 'keterangan'];
-    public $timestamps = true;
+    // protected $visible = ['id_karyawan','tgl_absen', 'keterangan'];
+    // protected $fillable = ['id_karyawan','tgl_absen', 'keterangan'];
+    // public $timestamps = true;
 
     
     public function pegawais()

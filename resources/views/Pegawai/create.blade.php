@@ -38,20 +38,7 @@ Dashboard
                                @endforeach
                                </select>
                             </div> 
-                            <div class="form-group col-md-12">
-                                <label for=""> Golongan </label>
-                                <select name="golongan" class="form-control @error('golongan') is-invalid @enderror">
-                                    <option value="">Pilih golongan</option>
-                                        <option value="staf">Staf</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="pegawai">Pegawai</option>
-                                </select>
-                                @error('golongan')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                           
                             <div class="form-group col-md-12">
                                 <label for="">Nama Pegawai</label>
                                 <input type="text" name="nama"

@@ -27,7 +27,6 @@ Dashboard
                                     <th>Tanggal Lahir</th>
                                     <th>Jenis Kelamin</th>
                                     <th>No Telepone</th>                                  
-                                    <th>Golongan</th>
                                     <th>Action</th>
 
                                 </tr>
@@ -46,7 +45,6 @@ Dashboard
                                         <td>{{ $data->tgl_lahir }}</td>
                                         <td>{{ $data->jenis_kelamin }}</td>
                                         <td>{{ $data->no_telp }}</td>                                  
-                                        <td>{{ $data->golongan}}</td>
                                         <td>
                                                 <a href="{{ route('Pegawai.show', $data->id) }}"
                                                     class="btn btn-outline btn-sm btn btn-info">Show</a>

@@ -62,7 +62,6 @@ class PegawaiController extends Controller
         $pegawai->tgl_lahir = $request->tgl_lahir;
         $pegawai->jenis_kelamin = $request->jenis_kelamin;
         $pegawai->no_telp = $request->no_telp;
-        $pegawai->golongan = $request->golongan;
         $pegawai->save();
         return redirect()->route('Pegawai.index');
     }
@@ -105,12 +104,11 @@ class PegawaiController extends Controller
      
         $request->validate([
             'nik' => 'required',
-            'nama' => 'required',
+            'nama' => 'required', 
             'alamat' => 'required',
             'tgl_lahir' => 'required',
             'jenis_kelamin' => 'required',
             'no_telp' => 'required',
-            'golongan' => 'required',
 
         ]);
         $pegawai = Pegawai::findOrFail($id);
@@ -127,7 +125,6 @@ class PegawaiController extends Controller
         $pegawai->tgl_lahir = $request->tgl_lahir;
         $pegawai->jenis_kelamin = $request->jenis_kelamin;
         $pegawai->no_telp = $request->no_telp;
-        $pegawai->golongan = $request->golongan;
         $pegawai->save();
         return redirect()->route('Pegawai.index');
       
